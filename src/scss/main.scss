@@ -1,0 +1,20 @@
+// utils styles 
+@import './utils/variables';
+
+// base styles 
+@import './base/base';
+@import './base/reset' ;
+
+// components styles
+@import "./components/container";
+@import './components/section';
+@import './components/logo';
+@import './components/btn';
+@import './components/pagination';
+@import './components/modal';
+@import './components/card-set';
+
+// layout styles
+@import './layout/header';
+@import './layout/movies';
+@import './layout/footer';

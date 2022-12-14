@@ -1,0 +1,18 @@
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+    color: var(--white-color);
+    background-color: var(--orange-color);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    padding: 13px 46px;
+
+    @media screen and (min-width: 480px){
+        padding: 14px 36px;
+    }
+}

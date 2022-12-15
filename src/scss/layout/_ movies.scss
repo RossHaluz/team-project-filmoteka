@@ -1,25 +1,109 @@
+@mixin mq($range) {
+  $mob: 320px;
+  $tab: 768px;
+  $desk: 1280px;
+
+  @if $range == mob {
+    @media screen and (min-width: $mob) {
+      @content;
+    }
+  } @else if $range == mob-only {
+    @media (max-width:#{$tab - 0.02}) {
+      @content;
+    }
+  } @else if $range == tab {
+    @media screen and (min-width: $tab) {
+      @content;
+    }
+  } @else if $range ==tab-only {
+    @media (min-width:$tab) and (max-width:#{$desk - 0.02}) {
+      @content;
+    }
+  } @else if $range == desk {
+    @media screen and (min-width: $desk) {
+      @content;
+    }
+  } @else if $range == noDesk {
+    @media (max-width:#{$desk - 0.02}) {
+      @content;
+    }
+  } @else if $range == retina {
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (-moz-min-device-pixel-ratio: 2),
+      screen and (-o-min-device-pixel-ratio: 2/1),
+      screen and (-webkit-min-device-pixel-ratio: 2),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      @content;
+    }
+  }
+}
+
 .main {
-  padding: 60px 0;
+  padding: 20px 0;
+
+  @include mq(tab) {
+    padding: 60px 0;
+  }
 }
 .container__main {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 20px;
+
+  @include mq(mob-only) {
+    max-width: 320px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 768px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 1280px;
+  }
 }
+
 .gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px 32px;
+  row-gap: 20px;
 
-  padding: 0;
-  margin: 0;
+  @include mq(tab) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 32px;
+  }
+
+  @include mq(desk) {
+    gap: 16px 32px;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 .gallery-card {
-  list-style: none;
-  max-width: 394px;
   height: 600px;
   background-color: brown;
+
+  @include mq(mob-only) {
+    max-width: 280px;
+  }
+
+  @include mq(tab) {
+    width: 336px;
+  }
+
+  @include mq(desk) {
+    width: 394px;
+  }
 }
 .gallery-pages {
-  margin: 0 auto;
+  margin: 20px auto 0;
+  height: 40px;
+
+  background-color: blue;
+
+  @include mq(mob-only) {
+    max-width: 280px;
+  }
+
+  @include mq(tab) {
+    margin-top: 60px;
+    width: 374px;
+  }
 }

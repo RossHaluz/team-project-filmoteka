@@ -1,15 +1,17 @@
-.container {
-    padding: 0 20px;
+.container__main {
     margin: 0 auto;
-    max-width: 320px;
+    padding: 0 20px;
+
+    @include mq(mob-only) {
+        max-width: 320px;
+    }
 
     @include mq(tab) {
-        max-width: 768px;
+        width: 768px;
         padding: 0 32px;
     }
 
     @include mq(desk) {
-        max-width: 1280px;
-        padding: 0 16px;
+        width: 1280px;
     }
 }

@@ -1,0 +1,49 @@
+.gallery {
+  display: grid;
+  row-gap: 20px;
+
+  @include mq(tab) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 32px;
+  }
+
+  @include mq(desk) {
+    gap: 16px 32px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.gallery-card {
+  // -для визуализации
+  height: 600px;
+  background-color: brown;
+  // -для визуализации
+
+  @include mq(mob-only) {
+    max-width: 280px;
+  }
+
+  @include mq(tab) {
+    width: 336px;
+  }
+
+  @include mq(desk) {
+    width: 288px; // размер для 4 столбцов //
+    // width: 394px; // размер для 3 столбцов //
+  }
+}
+.gallery-pages {
+  margin: 20px auto 0;
+  // -для визуализации
+  height: 40px;
+  background-color: blue;
+  // -для визуализации
+
+  @include mq(mob-only) {
+    max-width: 280px;
+  }
+
+  @include mq(tab) {
+    margin-top: 60px;
+    width: 374px;
+  }
+}

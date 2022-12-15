@@ -1,8 +1,8 @@
-// utils styles 
+// utils styles
 @import './utils/variables';
 @import './utils/mixin';
 
-// base styles 
+// base styles
 @import './base/base';
 @import './base/reset' ;
 
@@ -14,6 +14,7 @@
 @import './components/pagination';
 @import './components/modal';
 @import './components/card-set';
+@import './components/spinner';
 
 // layout styles
 @import './layout/header';

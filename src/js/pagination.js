@@ -1,6 +1,4 @@
 
-
-const listElement = document.querySelector('.js-card');
 const paginationElement = document.getElementById('pagination');
 const arrowLeft = document.querySelector('.arrow_left');
 const arrowRight = document.querySelector('.arrow_right');

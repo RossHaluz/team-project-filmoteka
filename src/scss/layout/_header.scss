@@ -14,7 +14,7 @@
 
   &__container {
     min-height: 230px;
-    padding-top: 40px;
+    // padding-top: 40px;
     // padding-bottom: 92px;
     display: flex;
     flex-direction: column;
@@ -22,7 +22,7 @@
 
     @include mq(tab) {
       gap: 40px;
-    //   padding-bottom: 80px;
+      //   padding-bottom: 80px;
       min-height: 216px;
     }
   }
@@ -31,6 +31,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-top: 40px;
+
   }
 }
 
@@ -89,11 +91,11 @@
   display: flex;
   align-self: center;
   justify-content: center;
-padding-bottom: 92px;
+  padding-bottom: 92px;
 
-    @include mq(tab) {
-            padding-bottom: 80px;
-        }
+  @include mq(tab) {
+    padding-bottom: 80px;
+  }
 
   &__bar {
     display: flex;

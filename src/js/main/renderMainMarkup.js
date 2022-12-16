@@ -1,45 +1,66 @@
-import {
-  API_KEY,
-  BASE_URL,
-  TREND_URL,
-  SEARCH_URL,
-  ID_URL,
-} from '../fetch-service/api-vars';
+import FetchFilmsApi from '../fetch-service/fechFilmsApi';
 
-export function creatCard() {
+let allGenres = {}; //глобальная переменная для жанров
+
+export async function onCreat() {
+  allGenres = await topicalAllGenres(); // строка для скачивания все актуальные жанры перед созданием разметки
+
+  const fetchFilmsApi = new FetchFilmsApi();
+  const options = { mediaType: 'movie', timeWindow: 'week' };
+
+  await fetchFilmsApi
+    .getAllFilmsData(options)
+    .then(response => creatCards(response.data.results))
+    .catch(error => console.log(error));
+}
+
+function creatCards(data) {
+  //функция для создания разметки карточек
   const box = document.querySelector(`.gallery`);
-  const markup = URLTREND()
-    .then(data =>
-      data.results.map(element => {
-        return `<li data-id=${element.id} class="gallery-card card">
-    <img src="${element.backdrop_path}" alt="" class="card-img">
-    <p class="cadr-name">${element.title}</p>
-    <p class="card-descr">${element.genre_ids}<span class="card-year">${element.release_date}.slice(0, 4)</span></p>
-</li>`;
-      })
-    )
-    .join();
+  console.log(data);
+  const markup = data
+    .map(element => {
+      return `<li data-id=${element.id} class="gallery-card card">
+              <img src="https://image.tmdb.org/t/p/w500/${
+                element.poster_path
+              }" alt="${element.title}" class="card-img">
+              <p class="cadr-name">${element.title}</p>
+              <p class="card-descr">${genresSerch(element.genre_ids)}
+              <span class="card-year">${checkYear(element.release_date)}
+              </span></p>
+          </li>`;
+    })
+    .join(``);
+
   box.innerHTML = markup;
 }
 
-// adult: false;
-// backdrop_path: '/198vrF8k7mfQ4FjDJsBmdQcaiyq.jpg';
-// genre_ids: (3)[(878, 28, 12)];
-// id: 76600;
-// media_type: 'movie';
-// original_language: 'en';
-// original_title: 'Avatar: The Way of Water';
-// overview: 'Set more than a decade after the events of the first film, learn the story of the Sully family (Jake, Neytiri, and their kids), the trouble that follows them, the lengths they go to keep each other safe, the battles they fight to stay alive, and the tragedies they endure.';
-// popularity: 1712.743;
-// poster_path: '/94xxm5701CzOdJdUEdIuwqZaowx.jpg';
-// release_date: '2022-12-14';
-// title: 'Avatar: The Way of Water';
-// video: false;
-// vote_average: 8.315;
-// vote_count: 138;
+async function topicalAllGenres() {
+  // функция для скачивания всех актуальныех жанров
+  const fetchFilmsApi = new FetchFilmsApi();
+  const optionsForGanes = { mediaType: 'genre', id: 'movie/list' };
 
-function URLTREND() {
-  return fetch(`${TREND_URL}?api_key=${API_KEY}`).then(response => {
-    return response.json();
-  });
+  const n = await fetchFilmsApi
+    .fetchWithCurrentFilm(optionsForGanes)
+    .then(response => {
+      return response.data.genres;
+    });
+  return n;
+}
+
+function genresSerch(data) {
+  // поиск всех нужных жанров фильма по Ид
+  return data
+    .map(element => {
+      return allGenres.filter(el => el.id == element).map(el => el.name);
+    })
+    .join(`, `);
+}
+
+function checkYear(data) {
+  // функция для проверки наличия и обрезания года релиза из даты
+  if (data) {
+    return `| ${data.slice(0, 4)}`;
+  }
+  return ``;
 }

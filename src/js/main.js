@@ -1,5 +1,6 @@
 import FetchFilmsApi from './fetch-service/fechFilmsApi';
 
 // --------------------------------------------
-import { creatCard } from './main/renderMainMarkup';
-creatCard();
+import { onCreat } from './main/renderMainMarkup';
+console.log(1);
+onCreat();

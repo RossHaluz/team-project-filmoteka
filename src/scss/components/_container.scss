@@ -1,17 +1,17 @@
-.container__main {
-    margin: 0 auto;
-    padding: 0 20px;
+.container {
+  margin: 0 auto;
+  padding: 0 20px;
 
-    @include mq(mob-only) {
-        max-width: 320px;
-    }
+  @include mq(mob-only) {
+    max-width: 320px;
+  }
 
-    @include mq(tab) {
-        width: 768px;
-        padding: 0 32px;
-    }
+  @include mq(tab) {
+    width: 768px;
+    padding: 0 32px;
+  }
 
-    @include mq(desk) {
-        width: 1280px;
-    }
+  @include mq(desk) {
+    width: 1280px;
+  }
 }

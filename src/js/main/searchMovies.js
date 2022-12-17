@@ -1,3 +1,4 @@
+
 import { refs } from '../fetch-service/refs';
 import FetchFilmsApi from '../fetch-service/fechFilmsApi';
 import { creatCards } from '../fetch-service/renderFuncApi';
@@ -33,3 +34,4 @@ export function onKeywordSearch(event) {
     creatCards(resp.data.results);
   });
 }
+

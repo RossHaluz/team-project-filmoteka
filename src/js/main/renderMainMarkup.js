@@ -2,7 +2,7 @@ import FetchFilmsApi from '../fetch-service/fechFilmsApi';
 
 let allGenres = {}; //глобальная переменная для жанров
 
- export  async function onCreat() {
+async function onCreat() {
   const fetchFilmsApi = new FetchFilmsApi();
   const options = { mediaType: 'movie', timeWindow: 'week' };
 
@@ -12,7 +12,7 @@ let allGenres = {}; //глобальная переменная для жанр�
     .catch(error => console.log(error));
 }
 
- export  async function creatCards(data) {
+async function creatCards(data) {
   //функция для создания разметки карточек
   allGenres = await topicalAllGenres(); // строка для скачивания все актуальные жанры перед созданием разметки
 

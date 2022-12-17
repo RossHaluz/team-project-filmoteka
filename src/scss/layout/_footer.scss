@@ -1,6 +1,25 @@
-section__footer {
-    width: 300px;
-    background-color: var(--footer-backgraund-color);
-    background-size: auto;
-    background-attachment: fixed;
+.section__footer {
+  background-color: var(--footer-backgraund-color);
+  padding: 30px 15px;
+}
+.footer-info {
+    color: var(--black-color);
+    font-family:var(--main-font); 
+    font-size: 16px;
+    line-height: 18.75px;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;   
+}
+.footer-info svg {
+    color: var(--orange-color);
+    padding: 0px 10px;
+
+}
+.footer-info a { 
+    text-decoration: underline;
+
+}
+.footer-info span{
+    white-space: nowrap;
 }

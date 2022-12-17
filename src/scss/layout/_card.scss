@@ -1,0 +1,26 @@
+.card-image {
+  width: 395px;
+  height: 574px;
+  border-radius: 5px;
+}
+.card-image img {
+  width: 100%;
+  height: auto;
+}
+
+.card-info {
+  width: 223px;
+  height: 48px;
+  font-family: var(--main-font);
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 500;
+  font-style: normal;
+}
+.card-name {
+  color: var(--black-color);
+  text-transform: uppercase;
+}
+.card-genre {
+  color: var(--orange-color);
+}

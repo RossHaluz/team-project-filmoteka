@@ -1,7 +1,7 @@
 
 import { refs } from '../fetch-service/refs';
 import FetchFilmsApi from '../fetch-service/fechFilmsApi';
-import { creatCards } from '../fetch-service/renderFuncApi';
+import { creatCards } from './renderMainMarkup';
 
 const filmsAPIService = new FetchFilmsApi();
 const parameters = {
@@ -23,8 +23,6 @@ export function onKeywordSearch(event) {
     alert('The text field is empty. Please type something into it and retry.');
     return;
   }
-
-  filmsAPIService.resetPage();
 
   filmsAPIService.fetchWithSearchFilmData(parameters).then(resp => {
     if (!resp.data.results.length) {

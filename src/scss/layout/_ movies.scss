@@ -13,11 +13,6 @@
   }
 }
 .gallery-card {
-  // -для визуализации
-  height: 600px;
-  background-color: brown;
-  // -для визуализации
-
   @include mq(mob-only) {
     max-width: 280px;
   }
@@ -33,10 +28,6 @@
 }
 .gallery-pages {
   margin: 20px auto 0;
-  // -для визуализации
-  height: 40px;
-  background-color: blue;
-  // -для визуализации
 
   @include mq(mob-only) {
     max-width: 280px;

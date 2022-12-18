@@ -1,33 +1,26 @@
-* {
-  box-sizing: border-box;
-}
-
 ul,
 p {
-  padding: 0;
-  margin: 0;
-}
-body {
-  margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 h1,
 h2,
 h3,
 h4 {
-  margin: 0;
+    margin: 0;
 }
 
 .list {
-  list-style: none;
+    list-style: none;
 }
 
 .link {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 img {
-  max-width: 100%;
-  display: block;
-  height: auto;
+    max-width: 100%;
+    display: block;
+    height: auto;
 }

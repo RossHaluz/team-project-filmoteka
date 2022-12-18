@@ -14,8 +14,9 @@ export function onButtonScrolUp() {
 
     // плавный скролл наверх
     to_top_btn.addEventListener('click', function () {
+      console.log(`это я`);
       window.scrollBy({
-        top: 0,
+        top: -window.pageYOffset,
         behavior: 'smooth',
       });
     });

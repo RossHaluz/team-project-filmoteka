@@ -18,13 +18,18 @@
 }
 
 .btn-goup {
-  width: 100px;
-  height: 100px;
-  background-color: red;
-
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  background-color: #fff;
   position: fixed;
-  bottom: 100px;
-  right: 100px;
+  bottom: 40px;
+  right: 40px;
+  outline: none;
+  border: solid 2px #272e3480;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: all 500;
 }
 
 .is-hidden {

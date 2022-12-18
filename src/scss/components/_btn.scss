@@ -1,18 +1,40 @@
-.btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    border: none;
-    cursor: pointer;
-    color: var(--white-color);
-    background-color: var(--orange-color);
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
-    padding: 13px 46px;
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  border: none;
+  cursor: pointer;
+  color: var(--white-color);
+  background-color: var(--orange-color);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 13px 46px;
 
-    @media screen and (min-width: 480px){
-        padding: 14px 36px;
-    }
+  @media screen and (min-width: 480px) {
+    padding: 14px 36px;
+  }
+}
+
+.btn-goup {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+
+  position: fixed;
+  bottom: 100px;
+  right: 100px;
+}
+
+.is-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

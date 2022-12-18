@@ -1,0 +1,28 @@
+.video-block {
+    width: 100%;
+    max-width: 500px;
+    height: 100vh;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    /* padding-top: 56.25%; */
+    /* background-color: #eeeeee; */
+}
+
+.video iframe {
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

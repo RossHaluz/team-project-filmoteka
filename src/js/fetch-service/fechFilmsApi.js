@@ -106,6 +106,17 @@ class FetchFilmsApi {
     }
   }
 
+
+
+async fetchTrailer({ id }) {
+    const response = await axios.get(
+      `movie/${id}?api_key=${this.#API_KEY} `,
+      this.config
+    );
+
+    return response;
+  }
+
   incrementPage({ step = 1 }) {
     this.page += step;
   }

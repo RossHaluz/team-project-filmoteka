@@ -1,16 +1,26 @@
 .header {
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: top center;
-  background-image: url(../img/home/home-bcg-sm.svg);
+  &__section {
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: top center;
+    background-image: url(../img/home/home-bcg-sm.svg);
+
+    padding-top: 44px;
+    padding-bottom: 92px;
 
   @include mq(tab-only) {
     background-image: url(../img/home/home-bcg-md.svg);
   }
 
+  @include mq(tab) {
+    padding-top: 40px;
+    padding-bottom: 80px;
+  }
+
   @include mq(desk) {
     background-image: url(../img/home/home-bcg-lg.svg);
   }
+}
 
   &__container {
     min-height: 230px;
@@ -31,7 +41,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 40px;
+    margin-bottom: 60px;
+  
+    @include mq(tab) {
+      margin-bottom: 40px;
+    }
 
   }
 }
@@ -96,34 +110,21 @@
   display: flex;
   align-self: center;
   justify-content: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding-bottom: 92px;
-
-  @include mq(tab) {
-    padding-bottom: 80px;
-  }
+  
+ 
 
   &__notification {
-    width: 100%;
+    max-width: 280px;
+    align-self: center;
     font-weight: 400;
     font-size: 14px;
     line-height: calc(16 / 14);
     color: var(--red-color);
+    position: absolute;
+    top: 155px;
 
-    &--is-hidden {
-      visibility: hidden;
-      opacity: 0;
-      pointer-events: none;
-      transition: visibility 0s linear 300ms, opacity 300ms;
-    }
-
-    &--is-active {
-      visibility: visible;
-      opacity: 1;
-      pointer-events: visible;
-      transition: visibility 0s linear 0s, opacity 300ms;
+    @include mq(tab) {
+max-width: 393px;
     }
   }
 
@@ -138,6 +139,8 @@
     border-bottom: 0.5px solid var(--white-color);
     padding-bottom: 4px;
     transition: border-bottom 500ms linear;
+    align-self: center;
+    position: relative;
 
     &:hover,
     &:focus {

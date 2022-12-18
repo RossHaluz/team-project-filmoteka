@@ -21,15 +21,14 @@ export function onKeywordSearch(event) {
 
   if (!filmsAPIService.actualQuery) {
     refs.formNotification.textContent = "The text field is empty. Please type something into it and retry.",
-    refs.formNotification.classList.add('search-form__notification--is-active');
-      setTimeout(() => refs.formNotification.classList.remove('search-form__notification--is-active'), 3000)
+      setTimeout(() => refs.formNotification.textContent = "", 3000)
     return;
   }
 
   filmsAPIService.fetchWithSearchFilmData(parameters).then(resp => {
     if (!resp.data.results.length) {
-      refs.formNotification.classList.add('search-form__notification--is-active');
-      setTimeout(() => refs.formNotification.classList.remove('search-form__notification--is-active'), 3000)
+    refs.formNotification.textContent = "Search result not successful. Enter the correct movie name and";
+      setTimeout(() => refs.formNotification.textContent = "", 3000)
       return;
     }
     creatCards(resp.data.results);

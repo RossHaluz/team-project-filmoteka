@@ -38,6 +38,10 @@
     transform: scale(1.2);
     box-shadow: 0px 0px 18px #000;
   }
+
+  &__icon {
+    fill: #272e3480;
+  }
 }
 
 .is-hidden {
@@ -50,4 +54,5 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+  transition: all 500ms ease-in-out;
 }

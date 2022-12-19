@@ -13,6 +13,15 @@
   }
 }
 .gallery-card {
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+
+  &:hover {
+    transform: scale(0.97);
+    box-shadow: 0px 0px 15px 3px #000;
+  }
+
   @include mq(mob-only) {
     max-width: 280px;
   }

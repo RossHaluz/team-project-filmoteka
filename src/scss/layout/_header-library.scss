@@ -1,6 +1,3 @@
-body {
-  margin: 0;
-}
 .header-library {
   background-repeat: no-repeat;
   background-size: cover;
@@ -57,21 +54,42 @@ body {
 
 }
 
-
-.logo-library__icon {
-  @include mq(mob-only) {
-    width: 20px;
-    height: 20px;
-  }
-  width: 24px;
+.logo__wrap {
+  display: flex;
+  position: relative;
+  overflow: hidden;
   height: 24px;
+  width: 24px;
+}
+
+.logo__icons {
+display: flex;
+flex-direction: column;
+position: absolute;
+top: -24px;
+left: 0px;
+}
+
+.logo__icon--first,
+.logo__icon--second {
+  display: flex;
+  height: 24px;
+  animation-name: movieScrolling;
+  animation-duration: 1500ms;
+  animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+  animation-iteration-count: infinite;
+}
+
+@keyframes movieScrolling {
+  0% {
+      transform: translateY(24px);
+  }
+  100% {
+      transform: translateY(0px);
+  }
 }
 
 .logo__title {
-  color: var(--white-color);
-  font-weight: 500;
-  font-size: 30px;
-  line-height: calc(35 / 30);
 
   @include mq(mob-only) {
     display: none;

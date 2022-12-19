@@ -1,16 +1,26 @@
 .header {
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: top center;
-  background-image: url(../img/home/home-bcg-sm.svg);
+  &__section {
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: top center;
+    background-image: url(../img/home/home-bcg-sm.svg);
+
+    padding-top: 44px;
+    padding-bottom: 92px;
 
   @include mq(tab-only) {
     background-image: url(../img/home/home-bcg-md.svg);
   }
 
+  @include mq(tab) {
+    padding-top: 40px;
+    padding-bottom: 80px;
+  }
+
   @include mq(desk) {
     background-image: url(../img/home/home-bcg-lg.svg);
   }
+}
 
   &__container {
     min-height: 230px;
@@ -31,7 +41,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 40px;
+    margin-bottom: 60px;
+  
+    @include mq(tab) {
+      margin-bottom: 40px;
+    }
 
   }
 }
@@ -79,6 +93,12 @@
     line-height: calc(14 / 12);
     text-transform: uppercase;
     color: var(--white-color);
+    transition: color 500ms linear;
+
+    &:hover,
+    &:focus {
+      color: var(--red-color);
+    }
 
     &--current {
       position: relative;
@@ -87,14 +107,25 @@
 }
 
 .search-form {
-  width: 100%;
   display: flex;
   align-self: center;
   justify-content: center;
-  padding-bottom: 92px;
+  
+ 
 
-  @include mq(tab) {
-    padding-bottom: 80px;
+  &__notification {
+    max-width: 280px;
+    align-self: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: calc(16 / 14);
+    color: var(--red-color);
+    position: absolute;
+    top: 155px;
+
+    @include mq(tab) {
+max-width: 393px;
+    }
   }
 
   &__bar {
@@ -107,6 +138,14 @@
     align-items: center;
     border-bottom: 0.5px solid var(--white-color);
     padding-bottom: 4px;
+    transition: border-bottom 500ms linear;
+    align-self: center;
+    position: relative;
+
+    &:hover,
+    &:focus {
+      border-bottom: 0.5px solid var(--red-color);
+    }
 
     @include mq(tab-only) {
       max-width: 336px;
@@ -118,6 +157,7 @@
   }
 
   &__input {
+    width: 100%;
     font-size: 14px;
     line-height: calc(16 / 14);
     color: var(--white-color);
@@ -136,7 +176,15 @@
     border: 0;
     background-color: transparent;
     cursor: pointer;
+    transition: transform 500ms linear;
+
+    &:hover,
+    &:focus {
+transform: scale(1.5);
+    }
   }
+
+
 }
 
 .current::after {

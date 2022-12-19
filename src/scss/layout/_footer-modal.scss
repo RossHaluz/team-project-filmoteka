@@ -40,9 +40,10 @@
     }
   
     @include mq(desk) {
-        top: 20px;
-        left: 40px;
+      top: 10px;
+      left: 50px;
         max-width: 1200px;
+        max-height: 1350px;
     }
   }
 

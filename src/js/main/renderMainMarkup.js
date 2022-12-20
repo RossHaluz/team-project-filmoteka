@@ -23,11 +23,13 @@ async function creatCards(data) {
       return `<li data-id=${element.id} class="gallery-card card">
               <img src="https://image.tmdb.org/t/p/w500/${
                 element.poster_path
-              }" alt="${element.title}" class="card-img">
-              <p class="cadr-name">${element.title}</p>
-              <p class="card-descr">${genresSerch(element.genre_ids)}
+        }" alt="${element.title}" class="card-image">
+            <div class="card-info">
+              <p class="card-name">${element.title}</p>
+              <p class="card-genre">${genresSerch(element.genre_ids)}
               <span class="card-year">${checkYear(element.release_date)}
               </span></p>
+              </div>
           </li>`;
     })
     .join(``);

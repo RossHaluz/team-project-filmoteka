@@ -1,0 +1,222 @@
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    cursor: pointer;
+    padding: 20px;
+    overflow-y: auto;
+    
+    transition: opacity 300ms ease-in-out;
+    z-index: 1000;
+    @include mq(tab-only) {
+        padding: 32px;
+    }
+
+    @include mq(desk) {
+        padding-left: 237px;
+        padding-right: 237px;
+    }
+}
+
+.modal {
+    position: relative;
+    // max-width: 632px;
+    background-color: #FFFFFF;
+    color: #000000;
+    margin: auto;
+    padding: 48px 20px 40px;
+    cursor: default;
+    overflow: hidden;
+
+    @include mq(desk) {
+        padding: 40px 12px;
+    }
+
+    @include mq(tab-only) {
+        padding: 40px 72px 40px 36px;
+    }
+}
+
+.modal__content {
+    @include mq(desk) {
+        display: flex;
+        gap: 16px;
+    }
+
+    @include mq(tab-only) {
+        display: flex;
+        gap: 68px;
+    }
+
+    @include mq(mob-only) {
+        width: 240px;
+    }
+}
+
+.modal__close {
+    position: absolute;
+    padding: 0px;
+    top: 8px;
+    right: 8px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    opacity: 0.7;
+    fill: #000000;
+}
+
+.modal__close:hover,
+.modal__close:focus {
+    opacity: 1;
+}
+
+.modal__image {
+    border-radius: 5px;
+    width: 240px;
+    height: 357px;
+    margin-bottom: 20px;
+
+    @include mq(desk) {
+        height: 478px;
+        width: 375px;
+        margin-bottom: 0px;
+    }
+
+    @include mq(tab-only) {
+        width: 264px;
+        height: 374px;
+        margin-bottom: 0px;
+    }
+
+
+}
+
+.modal__text-content {
+    @include mq(desk) {
+        width: 391px;
+    }
+
+    @include mq(tab-only) {
+        width: 264px;
+    }
+
+}
+
+.modal__title {
+    font-size: 20px;
+    line-height: 1.15;
+    margin-bottom: 20px;
+
+    @include mq(desk) {
+        font-size: 30px;
+        line-height: 1.17;
+    }
+}
+
+.modal__about {
+    font-family: 'Roboto';
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.33;
+    text-transform: uppercase;
+    color: #000000;
+    margin-bottom: 8px;
+}
+
+.modal__about-text {
+    font-size: 12px;
+    line-height: 1.67;
+    margin-bottom: 20px;
+}
+
+.modal__info {
+    display: flex;
+    gap: 39px;
+    margin-bottom: 20px;
+
+    @include mq(desk) {
+        gap: 83px;
+    }
+}
+
+.modal__info-key {
+    color: #8C8C8C;
+    font-weight: 500;
+    line-height: 1.33;
+    font-size: 12px;
+}
+
+.modal__info-key p:not(:last-child) {
+    margin-bottom: 8px;
+}
+
+.modal__info-value {
+    color: #000000;
+    font-weight: 500;
+    line-height: 1.33;
+    font-size: 12px;
+}
+
+.modal__info-value p:not(:last-child) {
+    margin-bottom: 8px;
+}
+
+.modal__btns {
+    display: flex;
+    gap: 15px;
+
+    @include mq(desk) {
+        padding-left: 8px;
+    }
+
+}
+
+.modal__watched-btn,
+.modal__queue-btn {
+    width: 136px;
+    height: 44px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    background: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+    font-family: 'Roboto';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.modal__watched-btn:hover,
+.modal__queue-btn:hover {
+    background-color: #FF6B01;
+    border-radius: 5px;
+    color: #FFFFFF;
+}
+
+.icon-close {
+    width: 30px;
+    height: 30px;
+}
+
+ul {// добавить в основной сброс стилей
+    list-style: none;
+}
+
+.modal__show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal__vote-design {
+    color: #FFFFFF;;
+    background-color: #FF6B01;
+    border-radius: 5px;
+}
+.modal__votes-design {
+    background-color: #F7F7F7;
+    border-radius: 5px;
+}

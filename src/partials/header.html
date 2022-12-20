@@ -1,4 +1,5 @@
 <header class="header">
+
     <div class="header__container container">
         <div class="header__body">
             <a class="logo link" href="./">
@@ -41,5 +42,58 @@
         </button>
             </form>
         </div>
+
+  <div class="header__section">
+    <div class="container">
+      <div class="header__body">
+        <a class="logo link" href="./">
+          <span class="logo__wrap">
+            <span class="logo__icons">
+              <svg class="logo__icon--first" width="24" height="24">
+                <use href="./img/svg/sprite.svg#logo"></use>
+              </svg>
+              <svg class="logo__icon--second" width="24" height="24">
+                <use href="./img/svg/sprite.svg#logo"></use>
+              </svg>
+            </span>
+          </span>
+          <span class="logo__txt">Filmoteka</span>
+        </a>
+        <div class="header__nav">
+          <nav class="nav">
+            <ul class="nav__list list">
+              <li class="nav__item">
+                <a
+                  class="nav__link link current nav__link--current"
+                  href="./index.html"
+                  >Home</a
+                >
+              </li>
+              <li class="nav__item">
+                <a class="nav__link link" href="./library.html">my library</a>
+              </li>
+            </ul>
+          </nav>
+          <input type="checkbox" class="changeColor" />
+        </div>
+      </div>
+      <div class="header__search search-form">
+        <form action="#" class="search-form__bar">
+          <input
+            class="search-form__input"
+            type="text"
+            autocomplete="off"
+            name="filmname"
+            placeholder="Movie search"
+          />
+          <button type="submit" class="search-form__btn">
+            <svg width="12" height="12">
+              <use href="./img/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </form>
+        <div class="search-form__notification"></div>
+      </div>
+
     </div>
 </header>

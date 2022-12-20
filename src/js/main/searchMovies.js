@@ -1,4 +1,3 @@
-
 import { refs } from '../fetch-service/refs';
 import FetchFilmsApi from '../fetch-service/fechFilmsApi';
 import { creatCards } from './renderMainMarkup';
@@ -13,20 +12,23 @@ const parameters = {
 
 refs.form.addEventListener('submit', onKeywordSearch);
 
+
+// Функція реалізує пошук та відображення фільмів за ключовим словом. Якщо пустий інпут або такого фільму немає - з'являється сповіщення. 
 export function onKeywordSearch(event) {
-  event.preventDefault();
+  event.preventDefault();   
 
   filmsAPIService.actualQuery = event.currentTarget.elements.filmname.value;
-  console.log(filmsAPIService.actualQuery);
 
   if (!filmsAPIService.actualQuery) {
-    alert('The text field is empty. Please type something into it and retry.');
+    refs.formNotification.textContent = "The text field is empty. Please type something into it and retry.",
+      setTimeout(() => refs.formNotification.textContent = "", 3000)
     return;
   }
 
   filmsAPIService.fetchWithSearchFilmData(parameters).then(resp => {
     if (!resp.data.results.length) {
-      alert('Search result not successful. Enter the correct movie name and');
+    refs.formNotification.textContent = "Search result not successful. Enter the correct movie name and";
+      setTimeout(() => refs.formNotification.textContent = "", 3000)
       return;
     }
     creatCards(resp.data.results);

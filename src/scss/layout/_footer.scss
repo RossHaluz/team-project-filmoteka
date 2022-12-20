@@ -11,15 +11,11 @@
   font-style: normal;
   text-align: center;
 }
-.footer-info svg {
-  padding: 0px 10px;
-}
-.footer-info a {
-  text-decoration: underline;
-}
+
 .footer-info span {
   white-space: nowrap;
 }
+
 
 
 
@@ -249,4 +245,10 @@
 }
 
 
+
+.footer__log{
+  text-decoration: underline;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--footer-text-color);
 

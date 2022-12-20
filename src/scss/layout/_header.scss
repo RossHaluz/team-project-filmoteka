@@ -55,15 +55,43 @@
   align-items: center;
   align-self: flex-start;
 
-  &__icon {
-    fill: var(--white-color);
-  }
+  .logo__wrap {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    height: 24px;
+    width: 24px;
+}
+
+.logo__icons {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: -24px;
+  left: 0px;
+}
+
+  .logo__icon--first,
+.logo__icon--second {
+    display: flex;
+    height: 24px;
+    animation-name: movieScrolling;
+    animation-duration: 1500ms;
+    animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+    animation-iteration-count: infinite;
+}
+
+@keyframes movieScrolling {
+    0% {
+        transform: translateY(24px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
 
   &__txt {
-    color: var(--white-color);
-    font-weight: 500;
-    font-size: 30px;
-    line-height: calc(35 / 30);
 
     @include mq(mob-only) {
       display: none;
@@ -114,6 +142,7 @@
  
 
   &__notification {
+    margin-top: 17px;
     max-width: 280px;
     align-self: center;
     font-weight: 400;
@@ -122,6 +151,10 @@
     color: var(--red-color);
     position: absolute;
     top: 155px;
+
+    @include mq(mob-only){
+      margin-top: 37px;
+    }
 
     @include mq(tab) {
 max-width: 393px;
@@ -196,4 +229,44 @@ transform: scale(1.5);
   width: 100%;
   height: 3px;
   background-color: var(--red-color);
+}
+
+input[type="checkbox"] {
+  display: block;
+  margin-left: auto;
+  position: relative;
+  width: 80px;
+  height: 30px;
+  border-radius: 50px;
+  appearance: none;
+  top: 20px;
+  background-color: var(--white-color);
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: #1c1c1c;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  border-radius: 50px;
+  transition: .5s ease-in-out;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #c9cda8;
+  transition: .5s ease-in;
+}
+
+input[type="checkbox"]:checked:before {
+  transform: translateX(50px);
+  background-color: var(--white-color);
+
+}
+
+.dark {
+  background-color: #1c1c1c;
+  color: var(--white-color);
 }

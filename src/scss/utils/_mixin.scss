@@ -1,4 +1,4 @@
-@mixin mq($range) {
+    @mixin mq($range) {
     $mob: 320px;
     $tab: 768px;
     $desk: 1280px;

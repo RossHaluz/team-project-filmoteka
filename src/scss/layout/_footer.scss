@@ -130,7 +130,11 @@
   cursor: pointer;
   border: 1px solid var(--white-color); 
   transition: fill .3s linear;
-
+  
+  @include mq(tab) {
+    top: 45px;
+    right: 30px;
+  }
   @include mq(desk) {
     top: 45px;
     right: 40px;

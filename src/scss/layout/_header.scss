@@ -121,7 +121,7 @@
     line-height: calc(14 / 12);
     text-transform: uppercase;
     color: var(--white-color);
-    transition: color 500ms linear;
+    transition: color .5s ease-in-out;
 
     &:hover,
     &:focus {
@@ -171,7 +171,7 @@ max-width: 393px;
     align-items: center;
     border-bottom: 0.5px solid var(--white-color);
     padding-bottom: 4px;
-    transition: border-bottom 500ms linear;
+    transition: border-bottom .5s ease-in-out;
     align-self: center;
     position: relative;
 
@@ -209,7 +209,7 @@ max-width: 393px;
     border: 0;
     background-color: transparent;
     cursor: pointer;
-    transition: transform 500ms linear;
+    transition: transform .5s ease-in-out;
 
     &:hover,
     &:focus {

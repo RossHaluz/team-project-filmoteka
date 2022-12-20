@@ -3,8 +3,9 @@ import { createMarkup} from '../fetch-service/renderFuncApi';
 import { onCreat, creatCards } from '../main/renderMainMarkup';
 // -----------
 const modal = document.querySelector('.modal');
-console.log(modal)
-const galleryCard = document.querySelectorAll('.gallety-card')
+
+const galleryCard = document.querySelectorAll('.gallety-card');
+console.log(galleryCard);
 //   function addListenerToCard() {
 const gallery = document.querySelector('.gallery-pages');
 gallery.addEventListener('click', openModal); //galleryCard.dataset.id 

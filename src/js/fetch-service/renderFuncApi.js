@@ -24,11 +24,12 @@ function createMarkup(cardData) {
     </use>
     </svg>
     </button>
-    <div class="modal__content" data-id=${id}>
+    <div class="modal__content">
       <img
         class="modal__image"
         src="https://image.tmdb.org/t/p/w500/${poster_path}"
         alt="${title}"
+        data-id=${id}
       />
       <div class="modal__text-content">
         <h2 class="modal__title">${title}</h2>

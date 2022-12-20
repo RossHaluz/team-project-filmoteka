@@ -10,7 +10,6 @@ async function onCreat() {
     .getAllFilmsData(options)
     .then(response =>  { 
       creatCards(response.data.results)
-     return addListenerToCard();
     })
     .catch(error => console.log(error));
   

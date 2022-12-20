@@ -1,4 +1,5 @@
 import FetchFilmsApi from '../fetch-service/fechFilmsApi';
+import { refs } from '../fetch-service/refs';
 
 let allGenres = {}; //глобальная переменная для жанров
 
@@ -8,33 +9,38 @@ async function onCreat() {
 
   await fetchFilmsApi
     .getAllFilmsData(options)
-    .then(response => creatCards(response.data.results))
+    .then(response =>  { 
+      creatCards(response.data.results)
+    })
     .catch(error => console.log(error));
+  
 }
 
 async function creatCards(data) {
   //функция для создания разметки карточек
   allGenres = await topicalAllGenres(); // строка для скачивания все актуальные жанры перед созданием разметки
 
-  const box = document.querySelector(`.gallery`);
+  
   console.log(data);
   const markup = data
-    .map(element => {
-      return `<li data-id=${element.id} class="gallery-card card">
-              <img src="https://image.tmdb.org/t/p/w500/${
-                element.poster_path
-        }" alt="${element.title}" class="card-image">
+    .map(({ id, poster_path, title, genre_ids, release_date }) => {
+      return `<li class="gallery-card card">
+              <img data-id=${id} data-ganres='${genresSerch(
+        genre_ids
+      )}'
+              src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="${title}" class="card-image">
             <div class="card-info">
-              <p class="card-name">${element.title}</p>
-              <p class="card-genre">${genresSerch(element.genre_ids)}
-              <span class="card-year">${checkYear(element.release_date)}
+              <p class="card-name">${title}</p>
+              <p class="card-genre">${genresSerch(genre_ids)}
+              <span class="card-year">${checkYear(release_date)}
               </span></p>
               </div>
           </li>`;
     })
     .join(``);
 
-  box.innerHTML = markup;
+  refs.gallery.innerHTML = markup;
+  
 }
 
 async function topicalAllGenres() {
@@ -52,11 +58,9 @@ async function topicalAllGenres() {
 
 function genresSerch(data) {
   // поиск всех нужных жанров фильма по Ид
-  return data
-    .map(element => {
-      return allGenres.filter(el => el.id == element).map(el => el.name);
-    })
-    .join(`, `);
+  return data.map(element => {
+     return allGenres.filter(el => el.id == element).map(el => el.name);
+    }).join(`, `);
 }
 
 function checkYear(data) {
@@ -64,8 +68,8 @@ function checkYear(data) {
   if (data) {
     return `| ${data.slice(0, 4)}`;
   }
-  return ``;
+  // return ``;
 }
 
 
-export {onCreat, creatCards}
+export {onCreat, creatCards, genresSerch}

@@ -6,7 +6,7 @@ class FetchFilmsApi {
   constructor(config = { baseURL: 'https://api.themoviedb.org/3/' }) {
     this.query = '';
     this.config = config;
-    this.#API_KEY = 'f896ccabafb5d2939071b9f1aa9e42c1';
+    this.#API_KEY = '345007f9ab440e5b86cef51be6397df1';
     this.page = 1;
     this.#totalPages = null;
   }

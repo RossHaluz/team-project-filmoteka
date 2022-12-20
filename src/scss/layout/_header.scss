@@ -142,7 +142,6 @@
  
 
   &__notification {
-    margin-top: 17px;
     max-width: 280px;
     align-self: center;
     font-weight: 400;
@@ -151,10 +150,6 @@
     color: var(--red-color);
     position: absolute;
     top: 155px;
-
-    @include mq(mob-only){
-      margin-top: 37px;
-    }
 
     @include mq(tab) {
 max-width: 393px;
@@ -231,6 +226,7 @@ transform: scale(1.5);
   background-color: var(--red-color);
 }
 
+
 input[type="checkbox"] {
   display: block;
   margin-left: auto;
@@ -269,4 +265,5 @@ input[type="checkbox"]:checked:before {
 .dark {
   background-color: #1c1c1c;
   color: var(--white-color);
+
 }

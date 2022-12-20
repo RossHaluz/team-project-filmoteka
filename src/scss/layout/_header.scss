@@ -225,3 +225,42 @@ transform: scale(1.5);
   height: 3px;
   background-color: var(--red-color);
 }
+
+input[type="checkbox"] {
+  display: block;
+  margin-left: auto;
+  position: relative;
+  width: 80px;
+  height: 30px;
+  border-radius: 50px;
+  appearance: none;
+  background-color: var(--white-color);
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: #1c1c1c;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  border-radius: 50px;
+  transition: .5s ease-in-out;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #c9cda8;
+  transition: .5s ease-in;
+}
+
+input[type="checkbox"]:checked:before {
+  transform: translateX(50px);
+  background-color: var(--white-color);
+
+}
+
+.dark {
+  background-color: #1c1c1c;
+  color: var(--white-color);
+}

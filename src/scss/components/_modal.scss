@@ -1,4 +1,4 @@
-.modal {
+.backdrop {
     position: fixed;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.2);
@@ -6,10 +6,9 @@
     cursor: pointer;
     padding: 20px;
     overflow-y: auto;
-    visibility: hidden;
-    opacity: 0;
+    
     transition: opacity 300ms ease-in-out;
-
+    z-index: 1000;
     @include mq(tab-only) {
         padding: 32px;
     }
@@ -18,10 +17,9 @@
         padding-left: 237px;
         padding-right: 237px;
     }
-
 }
 
-.modal__window {
+.modal {
     position: relative;
     // max-width: 632px;
     background-color: #FFFFFF;

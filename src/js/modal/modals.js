@@ -1,63 +1,75 @@
 import FetchFilmsApi from '../fetch-service/fechFilmsApi';
-import { createMarkup} from '../fetch-service/renderFuncApi';
+import { refs } from '../fetch-service/refs';
+import { createMarkup } from '../fetch-service/renderFuncApi';
 import { onCreat, creatCards } from '../main/renderMainMarkup';
-// -----------
-const modal = document.querySelector('.modal');
 
-const galleryCard = document.querySelectorAll('.gallety-card');
-console.log(galleryCard);
-//   function addListenerToCard() {
-const gallery = document.querySelector('.gallery-pages');
-gallery.addEventListener('click', openModal); //galleryCard.dataset.id 
-// }
-function openModal(event, filmId) {
+const fetchFilmsApi = new FetchFilmsApi();
+
+refs.gallery.addEventListener('click', openModal); //galleryCard.dataset.id
+ refs.modalCloseBtn.addEventListener('click', closeModal);
+
+async function openModal(e) {
+  if (!e.target.classList.contains('card-image')) {
+    return;
+  }
+  document.body.classList.add('no-scroll')
+  refs.modalWrap.innerHTML = ''
+  const filmId = e.target.dataset.id;
+  
+  fetchFilmsApi
+    .getCurrentFilm({ id: filmId })
+    .then(data => 
+      createMarkup(data.data)
+    )
+    .catch(error => console.log(error));
     
-    if (event.target.dataset.id === filmId) {//e.target === galleryCard
-        const filmId = event.target.dataset.id; 
-      const fetchFilmsApi = new FetchFilmsApi();
-      const options = { mediaType: 'movie', id: filmId };
-
-      fetchFilmsApi
-        .getAllFilmsData(options)
-        .then(response => createMarkup(response.data.results))
-        .catch(error => console.log(error));
-
-        modal.classList.add('modal__show');
-        window.addEventListener('scroll', blockScroll);
-    }
+    refs.backdrop.classList.remove('is-hidden');
+  window.addEventListener('scroll', blockScroll);
+ 
 }
-modal.addEventListener('click', closeModal);
-
+  
 function blockScroll() {
   window.scrollTo(0, 0);
 }
 
-function closeModal(event) {
-  const modalCloseBtn = document.querySelector('.icon-close');
-  const target = event.target;
-  console.log(target); // при нажатии на сам крестик (другой таргет) модалка не
 
-  if (target === modalCloseBtn) {
-    setTimeout(() => {
-      modal.style.visibility = 'hidden';
-    }, 300);
-    modal.classList.remove('modal__show');
-    modal.style.opacity = 0;
+async function closeModal(e) {
+  if (e.target === refs.modalCloseBtn) {
+    refs.backdrop.classList.add('is-hidden');
+    document.body.classList.remove('no-scroll');
     window.removeEventListener('scroll', blockScroll);
   }
 }
+// refs.modal.addEventListener('click', e => {
+//   if (e.target === refs.modal) {
+//     closeModal();
+//   }
+// });
 
+// // function onClickCloseBtn() {
+// //   closeModal();
+// // }
 
+// function closeModal() {
+//   refs.modal.innerHTML = '';
+//   refs.backdrop.classList.add('is-hidden');
+// }
 
+// function closeModal(event) {
+ 
+//   const target = event.target;
+//   console.log(target); // при нажатии на сам крестик (другой таргет) модалка не
+
+//   if (target === refs.modalCloseBtn) {
+//     setTimeout(() => {
+//      refs.modal.classList.remove('modal__show');
+//     }, 300);
+//     window.removeEventListener('scroll', blockScroll);
+//     refs.gallery.removeEventListener('click', openModal);
+//   }
+// }
 
 // -------------
-
-
-
-
-
-
-
 
 // async function getMovieGenre() {
 //     const fetchFilmsApi = new FetchFilmsApi();
@@ -67,9 +79,8 @@ function closeModal(event) {
 //       .fetchWithCurrentFilm(genreOptions)
 //        .then(response => {return response.data.genres})
 //        .catch(error => console.log(error));
-  
-// }
 
+// }
 
 //     const fetchFilmsApi = new FetchFilmsApi();
 //     const options = { mediaType: 'movie', id: `${dataId}` };
@@ -79,13 +90,10 @@ function closeModal(event) {
 //       .then(response => console.log(response))
 //       .catch(error => console.log(error));
 
-
 // const imageOpenModal = document.querySelector('.image');
 // const modal = document.querySelector('.modal');
 
 // imageOpenModal.addEventListener('click', openModal);
-
-
 
 // function openModal(e) {
 //     if (e.target === galleryCard) {
@@ -93,8 +101,6 @@ function closeModal(event) {
 //   modal.style.opacity = 1;
 //   createMarkup();
 // }
-  
-  
 
 // }
 
@@ -156,8 +162,6 @@ function closeModal(event) {
 //     createMarkup(data.backdrops);
 //     console.log(data);
 // });
-
-
 
 // function fetchDataMovie() {
 //   return fetch(

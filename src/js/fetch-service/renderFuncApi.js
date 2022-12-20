@@ -1,30 +1,20 @@
 import { genresSerch } from '../main/renderMainMarkup';
 import { onCreat, creatCards } from '../main/renderMainMarkup';
+import { refs } from './refs';
 
-const modal = document.querySelector('.modal');
-
-function createMarkup(cardData) {
-  const markup = cardData
-    .map(
-      ({
-        id,
-        poster_path,
-        title,
-        overview,
-        vote_average,
-        vote_count,
-        original_title,
-        popularity,
-        genre_ids,
-      }) =>
-        `<div class="modal__window">
-    <button type="button" class="modal__close">
-    <svg class="icon-close" width="30" height="30">
-    <use href="./img/svg/sprite.svg#icon-close">
-    </use>
-    </svg>
-    </button>
-    <div class="modal__content">
+ function createMarkup({
+   id,
+   poster_path,
+   title,
+   overview,
+   vote_average,
+   vote_count,
+   original_title,
+   popularity,
+   genres,
+ }) {
+   
+   const markup = `
       <img
         class="modal__image"
         src="https://image.tmdb.org/t/p/w500/${poster_path}"
@@ -44,7 +34,7 @@ function createMarkup(cardData) {
             <p>${vote_average} / ${vote_count}</p>
             <p>${popularity}</p>
             <p>${original_title}</p>
-            <p>${genresSerch(genre_ids)}</p>
+            <p>${createGenres(genres)}</p>
           </li>
         </ul>
         <h3 class="modal__about">ABOUT</h3>
@@ -54,13 +44,18 @@ function createMarkup(cardData) {
           <button type="button" class="modal__queue-btn">Add to Queue</button>
         </div>
       </div>
-    </div>
-  </div>`
-    )
-    .join('');
-  // )
-  // .join('');
-  modal.innerHTML = markup;
-}
+  `;
 
+   refs.modalWrap.insertAdjacentHTML('beforeend', markup);
+}
+ 
+function createGenres(data) {
+return data.map(el => el.name).join(', ')
+}
+// <button type="button" class="modal__close">
+    // <svg class="icon-close" width="30" height="30">
+    // <use href="./img/svg/sprite.svg#icon-close">
+    // </use>
+    // </svg>
+    // </button>
 export { createMarkup };

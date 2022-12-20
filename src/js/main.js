@@ -1,8 +1,11 @@
 import FetchFilmsApi from "./fetch-service/fechFilmsApi";
 import { onKeywordSearch } from "./main/searchMovies";
 import { onCreat, creatCards } from './main/renderMainMarkup';
-import { openModal, addListenerToCard } from './modal/modals';
-import { createMarkup } from "./fetch-service/renderFuncApi";
+import { onButtonScrolUp } from './main/buttonScrolUp';
+import { onClickChangeColor } from './main/changeColor';
+import { createMarkup } from './fetch-service/renderFuncApi';
+import { openModal } from './modal/modals';
+onButtonScrolUp();
 onCreat()
 // addListenerToCard();
 

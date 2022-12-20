@@ -15,3 +15,10 @@
 .footer-info span {
   white-space: nowrap;
 }
+
+.footer__log{
+  text-decoration: underline;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--footer-text-color);
+}

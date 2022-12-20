@@ -37,14 +37,12 @@
   }
 }
 .gallery-pages {
-  margin: 20px auto 0;
 
   @include mq(mob-only) {
     max-width: 280px;
   }
 
   @include mq(tab) {
-    margin-top: 60px;
     width: 374px;
   }
 }

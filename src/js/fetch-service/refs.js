@@ -4,13 +4,11 @@ const refs = {
   changeColor: document.querySelector('.changeColor'),
   modal: document.querySelector('.modal'),
   gallery: document.querySelector('.gallery'),
-  modalCloseBtn: document.querySelector('.modal__close'),
+  // modalCloseBtn: document.querySelector('.modal__close'),
+  modalCloseBtn: document.querySelector('.modal__icon-close'),
   backdrop: document.querySelector('.backdrop'),
   galleryCard: document.querySelector('.gallery-card'),
-  modalWrap: document.querySelector('.modal__content'),
-  //   linkOpenModal: document.querySelector('[data-open-modal]'),
-  //   btnCloseModal: document.querySelector('[data-close-modal]'),
-  //   teamModal: document.querySelector('[data-modal]'),
+  modalContent: document.querySelector('.modal__content'),
 };
 
 export { refs }

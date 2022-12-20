@@ -25,14 +25,14 @@ import { refs } from './refs';
         <h2 class="modal__title">${title}</h2>
         <ul class="modal__info">
           <li class="modal__info-key">
-            <p><span class="modal__vote-design">Vote</span> / <span class="modal__votes-design">Votes</span></p>
+            <p>Vote / Votes</span></p>
             <p>Popularity</p>
             <p>Original Title</p>
             <p>Genre</p>
           </li>
           <li class="modal__info-value">
-            <p>${vote_average} / ${vote_count}</p>
-            <p>${popularity}</p>
+            <p><span class="modal__vote-design">${String(vote_average).slice(0,-2)}</span> / <span class="modal__votes-design">${vote_count}</span></p> 
+            <p>${String(popularity).slice(0,-2)}</p>
             <p>${original_title}</p>
             <p>${createGenres(genres)}</p>
           </li>
@@ -46,12 +46,16 @@ import { refs } from './refs';
       </div>
   `;
 
-   refs.modalWrap.insertAdjacentHTML('beforeend', markup);
+   refs.modalContent.insertAdjacentHTML('beforeend', markup);
 }
  
 function createGenres(data) {
 return data.map(el => el.name).join(', ')
 }
+
+// сделать функцию проверки количества чисел на вход если допустим 7 то слайсить на два числа если восемь то слайсить на три
+//как округлить цифрі к одной после точки
+// как одинаково спозиционировать дэлементы в двух лишках
 // <button type="button" class="modal__close">
     // <svg class="icon-close" width="30" height="30">
     // <use href="./img/svg/sprite.svg#icon-close">

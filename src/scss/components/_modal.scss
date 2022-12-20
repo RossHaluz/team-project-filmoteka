@@ -53,21 +53,23 @@
         width: 240px;
     }
 }
-
 .modal__close {
-    position: absolute;
+position: absolute;
     padding: 0px;
     top: 8px;
     right: 8px;
     border: none;
     background: none;
     cursor: pointer;
-    opacity: 0.7;
-    fill: #000000;
+    
+}
+.modal__icon-close {
+fill: black;
+    opacity: 0.5;
+    
 }
 
-.modal__close:hover,
-.modal__close:focus {
+.modal__icon-close:hover {
     opacity: 1;
 }
 
@@ -149,6 +151,7 @@
 
 .modal__info-key p:not(:last-child) {
     margin-bottom: 8px;
+    width: 69px;
 }
 
 .modal__info-value {
@@ -197,11 +200,6 @@
     color: #FFFFFF;
 }
 
-.icon-close {
-    width: 30px;
-    height: 30px;
-}
-
 ul {// добавить в основной сброс стилей
     list-style: none;
 }
@@ -212,11 +210,15 @@ ul {// добавить в основной сброс стилей
 }
 
 .modal__vote-design {
+    padding-left: 10px;
+    padding-right: 9px;
     color: #FFFFFF;;
     background-color: #FF6B01;
     border-radius: 5px;
 }
 .modal__votes-design {
+    padding-left: 4px;
+    padding-right: 4px;
     background-color: #F7F7F7;
     border-radius: 5px;
 }

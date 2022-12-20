@@ -1,5 +1,5 @@
 import FetchFilmsApi from '../fetch-service/fechFilmsApi';
-
+import addListenerToCard from '../modal/modals'
 let allGenres = {}; //глобальная переменная для жанров
 
 async function onCreat() {
@@ -8,8 +8,12 @@ async function onCreat() {
 
   await fetchFilmsApi
     .getAllFilmsData(options)
-    .then(response => creatCards(response.data.results))
+    .then(response =>  { 
+      creatCards(response.data.results)
+     return addListenerToCard();
+    })
     .catch(error => console.log(error));
+  
 }
 
 async function creatCards(data) {
@@ -33,6 +37,7 @@ async function creatCards(data) {
     .join(``);
 
   box.innerHTML = markup;
+  
 }
 
 async function topicalAllGenres() {
@@ -66,4 +71,4 @@ function checkYear(data) {
 }
 
 
-export {onCreat, creatCards}
+export {onCreat, creatCards, genresSerch}

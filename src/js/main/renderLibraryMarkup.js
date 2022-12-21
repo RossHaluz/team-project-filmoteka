@@ -15,10 +15,12 @@ export function getFilmsById() {
 }
  
 
-function creatLibraryMarkup({poster_path, title}){ 
-   const markup =  `
+function creatLibraryMarkup({poster_path, title, release_date}){ 
+    const markup =  `
+    <li class="library-list__item card-set-iteam">
     <img src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="">
       <h3 class="library-list__matkup-title">${title}</h3>
+      </li>
     `;
 
     refs.libraryList.insertAdjacentHTML('beforeend', markup)

@@ -5,6 +5,7 @@ import { renderMarkupModal } from '../main/renderMarkupModal';
 import { LocalStorageServiceFilms } from "../fetch-service/localStorageService";
 
 
+
 const fethApi = new FetchFilmsApi()
 const localStorageFilms = new LocalStorageServiceFilms();
 let filmId;

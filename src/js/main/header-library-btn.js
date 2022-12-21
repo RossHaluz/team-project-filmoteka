@@ -1,6 +1,8 @@
 import { LocalStorageServiceFilms } from "../fetch-service/localStorageService";
 import refs from "../fetch-service/refs";
-import { getAndRenderLibraryMurkap } from "./renderLibraryMarkup";
+import { getAndRenderLibraryMurkap, getFilmsById } from "./renderLibraryMarkup";
+
+
 
 
 refs.libraryBtnWatched.addEventListener('click', onClickBtnWatched);
@@ -9,7 +11,7 @@ const localStorageFilms = new LocalStorageServiceFilms()
 
 export function onClickBtnWatched() {
     refs.libraryBtnQueue.classList.remove('hedear__library--btn-active');
-    refs.libraryBtnWatched.classList.add('hedear__library--btn-active');
+    refs.libraryBtnWatched.classList.add('hedear__library--btn-active');  
 }
 
 export function onClickBtnQueue(){

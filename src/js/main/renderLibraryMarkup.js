@@ -4,13 +4,26 @@ import refs from "../fetch-service/refs";
 
 const fetchApi = new FetchFilmsApi();
 const localStorageFilms = new LocalStorageServiceFilms()
-let id;
 
 export function getFilmsById() {
     const getFilms = localStorageFilms.getFilms();
-id =  getFilms.map(film => fetchApi.getIdFilm = film)
+    getFilms.map(film => {
+        fetchApi.getIdFilm = film
+            fetchApi.getDateilsMovieById().then(data => creatLibraryMarkup(data));
+    })
+
 }
  
+
+function creatLibraryMarkup({poster_path, title}){ 
+   const markup =  `
+    <img src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="">
+      <h3 class="library-list__matkup-title">${title}</h3>
+    `;
+
+    refs.libraryList.insertAdjacentHTML('beforeend', markup)
+
+}
 
 
 

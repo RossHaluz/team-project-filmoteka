@@ -1,88 +1,55 @@
-import FetchFilmsApi from '../fetch-service/fechFilmsApi';
-import { refs } from '../fetch-service/refs';
-import { createPagination } from '../paginatin/pagination';
+import fetchFilmsApi from '../fetch-service/fechFilmsApi'
+import refs from '../fetch-service/refs'
+import {createPagination} from '../paginatin/pagination'
 
-const fetchApi = new FetchFilmsApi();
+const fetchApi = new fetchFilmsApi()
 
 
-let allGenres = {}; //глобальная переменная для жанров
+function renderMovies(arr) {
+  const markup = arr.map(({ poster_path, title, release_date, id}) => `
+     <li class="galery-list__item card-set-iteam">
+          <img data-id=${id} src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="${title}" class="galery-list__img" />
+          <h3 class="galery-list__title">${title}</h3>
+          <p class="galery-list__desc">
+            Science Fiction, Action, Adventure, Drama | ${splitDate(release_date)}
+          </p>
+        </li>
+    `).join('');
+  
+  refs.galeryList.insertAdjacentHTML('beforeend', markup)
+ 
+}
 
-async function onCreat() {
-  const fetchFilmsApi = new FetchFilmsApi();
-  const options = { mediaType: 'movie', timeWindow: 'week' };
+function getTrendingMoviesAndRender() {
+  fetchApi.getTrendingMovies().then(data => {
+    console.log(data)
+    if (!data.results.length) {
+      return
+    }
+  renderMovies(data.results)
 
-  await fetchFilmsApi
-    .getAllFilmsData(options)
-    .then(response => { 
-      
-      creatCards(response.data.results);
-
-      const pagination = createPagination(response.total_results, response.total_pages);
+  const pagination = createPagination(data.total_results, data.total_pages);
   pagination.on('beforeMove', ({ page }) => {
-    refs.gallery.innerHTML = '';
-    fetchApi.fetchGenresList(page).then(data => {
-      refs.gallery.insertAdjacentHTML('beforeend', creatCards(data.results));
-    });
+   refs.galeryList.innerHTML = '';
+    fetchApi.pageNum = page;
+     fetchApi.getTrendingMovies().then(data => {
+      refs.galeryList.insertAdjacentHTML('beforeend', renderMovies(data.results));
+     });
+    
   });
-    })
-    .catch(error => console.log(error));
-  
+}).catch(err => console.log(err))
 }
 
-async function creatCards(data) {
-  //функция для создания разметки карточек
-  allGenres = await topicalAllGenres(); // строка для скачивания все актуальные жанры перед созданием разметки
+getTrendingMoviesAndRender()
 
-  
-  console.log(data);
-  const markup = data
-    .map(({ id, poster_path, title, genre_ids, release_date }) => {
-      return `<li class="gallery-card card">
-              <img data-id=${id} data-ganres='${genresSerch(
-        genre_ids
-      )}'
-              src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="${title}" class="card-image">
-            <div class="card-info">
-              <p class="card-name">${title}</p>
-              <p class="card-genre">${genresSerch(genre_ids)}
-              <span class="card-year">${checkYear(release_date)}
-              </span></p>
-              </div>
-          </li>`;
-    })
-    .join(``);
+function splitDate(value) {
+    const slit = value.split('').slice(0, 4).join('');
 
-  refs.gallery.innerHTML = markup;
-  
-}
+    return slit;
 
-async function topicalAllGenres() {
-  // функция для скачивания всех актуальныех жанров
-  const fetchFilmsApi = new FetchFilmsApi();
-  const optionsForGanes = { mediaType: 'genre', id: 'movie/list' };
-
-  const n = await fetchFilmsApi
-    .fetchWithCurrentFilm(optionsForGanes)
-    .then(response => {
-      return response.data.genres;
-    });
-  return n;
-}
-
-function genresSerch(data) {
-  // поиск всех нужных жанров фильма по Ид
-  return data.map(element => {
-     return allGenres.filter(el => el.id == element).map(el => el.name);
-    }).join(`, `);
-}
-
-function checkYear(data) {
-  // функция для проверки наличия и обрезания года релиза из даты
-  if (data) {
-    return `| ${data.slice(0, 4)}`;
-  }
-  // return ``;
 }
 
 
-export {onCreat, creatCards, genresSerch}
+
+export default getTrendingMoviesAndRender
+

@@ -1,13 +1,15 @@
 import FetchFilmsApi from "./fetch-service/fechFilmsApi";
-import { onKeywordSearch } from "./main/searchMovies";
-import { onCreat, creatCards } from './main/renderMainMarkup';
-import { onButtonScrolUp } from './main/buttonScrolUp';
-import { onClickChangeColor } from './main/changeColor';
-import { createMarkup } from './fetch-service/renderFuncApi';
-import { openModal } from './modal/modals';
-import { createPagination } from "./paginatin/pagination";
-createPagination()
-onButtonScrolUp();
-onCreat()
-// addListenerToCard();
+import onFormSubmit from './main/searchMovies';
+import refs from './fetch-service/refs';
+import renderMarkupSearch from "./main/renderMarkupSearch";
+import getTrendingMoviesAndRender from "./main/renderMainMarkup";
+import onClickChangeColor from './main/changeColor';
+import { onClickFilm } from './modal/modals';
+import { renderMarkupModal } from './main/renderMarkupModal';
+import { createPagination } from './paginatin/pagination';
+import { LocalStorageServiceFilms } from "./fetch-service/localStorageService";
+// createPagination() 
+
+// import { onCreat, creatCards} from './main/renderMainMarkup';
+// onCreat()
 

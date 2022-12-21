@@ -1,37 +1,36 @@
-import { refs } from '../fetch-service/refs';
 import FetchFilmsApi from '../fetch-service/fechFilmsApi';
-import { creatCards } from './renderMainMarkup';
+import refs from '../fetch-service/refs';
+import { createPagination } from '../paginatin/pagination';
+import renderMarkupSearch from './renderMarkupSearch';
 
-const filmsAPIService = new FetchFilmsApi();
-const parameters = {
-  mediaType: 'movie',
-  lang: 'en-US',
-  page: filmsAPIService.page,
-  include_adult: false,
-};
+const apiFetch = new FetchFilmsApi()
 
-refs.form.addEventListener('submit', onKeywordSearch);
+refs.form.addEventListener('submit', onFormSubmit);
 
+function onFormSubmit(e) {
+    e.preventDefault();
+    const formInputSearch = refs.formImput.value.trim()
+    apiFetch.serchValue = formInputSearch;
 
-// Функція реалізує пошук та відображення фільмів за ключовим словом. Якщо пустий інпут або такого фільму немає - з'являється сповіщення. 
-export function onKeywordSearch(event) {
-  event.preventDefault();   
+    refs.galeryList.innerHTML = "";
 
-  filmsAPIService.actualQuery = event.currentTarget.elements.filmname.value;
+    apiFetch.getMouvieSearch().then(data => {
+        if (!data.results.length) {
+            return
+        }
+        renderMarkupSearch(data.results)
+        const pagination = createPagination(data.total_results, data.total_pages);
 
-  if (!filmsAPIService.actualQuery) {
-    refs.formNotification.textContent = "The text field is empty. Please type something into it and retry.",
-      setTimeout(() => refs.formNotification.textContent = "", 3000)
-    return;
-  }
+        pagination.on('beforeMove', ({ page }) => {
+            refs.galeryList.innerHTML = '';
+            apiFetch.pageNum = page;
+        apiFetch.getMouvieSearch().then(data => {
+        refs.galeryList.innerHTML = renderMarkupSearch(data.results);
+        });
+      
+      });
+   }).catch(err => console.log(err))
 
-  filmsAPIService.fetchWithSearchFilmData(parameters).then(resp => {
-    if (!resp.data.results.length) {
-    refs.formNotification.textContent = "Search result not successful. Enter the correct movie name and";
-      setTimeout(() => refs.formNotification.textContent = "", 3000)
-      return;
-    }
-    creatCards(resp.data.results);
-  });
 }
 
+export default onFormSubmit

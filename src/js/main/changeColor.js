@@ -1,5 +1,4 @@
-import { refs } from "../fetch-service/refs";
-
+import refs from "../fetch-service/refs";
 
 refs.changeColor.addEventListener('click', onClickChangeColor);
 

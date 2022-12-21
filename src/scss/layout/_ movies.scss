@@ -1,48 +1,8 @@
-.gallery {
-  display: grid;
-  row-gap: 20px;
+.galery-list{
+    display: flex;
+    flex-wrap: wrap;
 
-  @include mq(tab) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px 32px;
-  }
-
-  @include mq(desk) {
-    gap: 16px 32px;
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-.gallery-card {
-
-  cursor: pointer;
-  transition: all 300ms ease-in-out;
-  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-
-  &:hover {
-    transform: scale(0.97);
-    box-shadow: 0px 0px 15px 3px #000;
-  }
-
-  @include mq(mob-only) {
-    max-width: 280px;
-  }
-
-  @include mq(tab) {
-    width: 336px;
-  }
-
-  @include mq(desk) {
-    width: 280px; // размер для 4 столбцов //
-    // width: 394px; // размер для 3 столбцов //
-  }
-}
-.gallery-pages {
-
-  @include mq(mob-only) {
-    max-width: 280px;
-  }
-
-  @include mq(tab) {
-    width: 374px;
-  }
+    @include mq(desk){
+        --items: 4;
+    }
 }

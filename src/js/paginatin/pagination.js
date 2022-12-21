@@ -5,11 +5,10 @@ import { refs } from '../fetch-service/refs';
 
 export function createPagination() {
   const options = {
-  totalItems: 10,
-  itemsPerPage: 10,
-  visiblePages: 10,
-  page: 1,
-  centerAlign: false,
+  totalItems: 500,
+ itemsPerPage: 10,
+ visiblePages: 5,
+  centerAlign: true,
   firstItemClassName: 'tui-first-child',
   lastItemClassName: 'tui-last-child',
   template: {

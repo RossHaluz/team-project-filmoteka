@@ -3,3 +3,21 @@
     justify-content: center;
     gap: 10px;
 }
+
+.header-library-cover {
+    border: none;
+    background: none;
+    width: auto;    
+}
+
+.hedear__library--btn{
+    border: none;
+    background: none;
+    color: var(--white-color);
+    border: 1px solid var(--white-color);
+    padding: 10px 20px;
+}
+
+.hedear__library--btn-active{
+    background-color: var(--orange-color);
+}

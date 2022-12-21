@@ -3,7 +3,6 @@ import { refs } from '../fetch-service/refs';
 import { createMarkup } from '../fetch-service/renderFuncApi';
 
 const fetchFilmsApi = new FetchFilmsApi();
-const btn = document.querySelector('.modal__close')
 refs.gallery.addEventListener('click', openModal);
 refs.modalCloseBtn.addEventListener('click', closeModal);
 
@@ -21,23 +20,21 @@ async function openModal(e) {
     .getCurrentFilm({ id: filmId })
     .then(data => createMarkup(data.data))
     .catch(error => console.log(error));
+  refs.backdrop.addEventListener('click', closeModal);
+  window.addEventListener('keydown', closeModal)
 }
 
-
 async function closeModal(e) {
-  if (e.target === refs.modalCloseBtn) {
+  if (
+    e.target === refs.modalCloseBtn ||
+    e.target === refs.backdrop ||
+    e.keyCode === 27
+  ) {
     document.body.classList.remove('no-scroll');
     refs.backdrop.classList.add('is-hidden');
   }
+  refs.backdrop.removeEventListener('click', closeModal);
+  window.removeEventListener('keydown', closeModal);
 }
-
-//   if (target === refs.modalCloseBtn) {
-//     setTimeout(() => {
-//      refs.modal.classList.remove('modal__show');
-//     }, 300);
-//     window.removeEventListener('scroll', blockScroll);
-//     refs.gallery.removeEventListener('click', openModal);
-//   }
-// }
 
 export { openModal };

@@ -23,6 +23,7 @@ async function openModal(e) {
     .catch(error => console.log(error));
 }
 
+
 async function closeModal(e) {
   if (e.target === refs.modalCloseBtn) {
     document.body.classList.remove('no-scroll');

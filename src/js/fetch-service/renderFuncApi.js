@@ -11,13 +11,15 @@ function createMarkup({
   popularity,
   genres,
 }) {
-  const markup = `
+  const markup = `<div class ="modal__img-box">
       <img
         class="modal__image"
         src="https://image.tmdb.org/t/p/w500/${poster_path}"
         alt="${title}"
         data-id=${id}
       />
+      <button type="button" class="modal__trailer-btn">▶</button>
+      </div>
       <div class="modal__text-content">
         <h2 class="modal__title">${title}</h2>
         <ul class="modal__info">
@@ -56,13 +58,4 @@ function toChangeNum(data) {
   return data % 1 === 0 ? data.toFixed() : data.toFixed(1);
 }
 
-// сделать функцию проверки количества чисел на вход если допустим 7 то слайсить на два числа если восемь то слайсить на три
-//как округлить цифрі к одной после точки
-// как одинаково спозиционировать дэлементы в двух лишках
-// <button type="button" class="modal__close">
-// <svg class="icon-close" width="30" height="30">
-// <use href="./img/svg/sprite.svg#icon-close">
-// </use>
-// </svg>
-// </button>
 export { createMarkup };

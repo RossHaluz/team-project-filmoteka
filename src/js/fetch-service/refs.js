@@ -10,6 +10,8 @@ const refs = {
     modalWrapp: document.querySelector('.modal-wrapp'),
     modalBtnWatched: document.querySelector('.modal__btn--watched'),
     modalBtnQueue: document.querySelector('.modal__btn--queue'),
+    headerLibraryBtnWatched: document.querySelector('.header__library--btn-watched'),
+    headerLibraryBtnQueue: document.querySelector(".header__library--btn-queue")
 }
 
 export default refs;

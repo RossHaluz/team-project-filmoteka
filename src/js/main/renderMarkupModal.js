@@ -4,9 +4,6 @@ import refs from '../fetch-service/refs';
 import { onClickFilm } from '../modal/modals'
 
 
-
-
-
 export function renderMarkupModal({ poster_path, title, vote_average, vote_count, popularity, overview }) {
   const markup = `
     <div class="modal-content">

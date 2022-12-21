@@ -1,10 +1,14 @@
 import getTrendingMoviesAndRender from "../main/renderMainMarkup";
 import FetchFilmsApi from "./fechFilmsApi";
+import { onClickFilm } from '../modal/modals';
+import refs from "./refs";
 
+const fetchApi = new FetchFilmsApi ()
 
-class LocalStorageServiceFilms {
+export class LocalStorageServiceFilms {
     constructor() {
         this.keyName = 'films';
+        this.idFilm = null;
     }
 
     getFilms() {
@@ -35,16 +39,13 @@ class LocalStorageServiceFilms {
             films,
         }
     }
+
+    get filmByID() {
+        return this.idFilm;
+    }
+
+    set filmByID(newIdFilm) {
+        this.idFilm = newIdFilm;
+    }
 }
 
-
-const localStorageServiceFilms = new LocalStorageServiceFilms();
-localStorageServiceFilms.setFilms('el1')
-localStorageServiceFilms.setFilms('el2')
-
-
-
-
-
-
-export default LocalStorageServiceFilms

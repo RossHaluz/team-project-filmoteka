@@ -7,6 +7,7 @@ import onClickChangeColor from './main/changeColor';
 import { onClickFilm } from './modal/modals';
 import { renderMarkupModal } from './main/renderMarkupModal';
 import { createPagination } from './paginatin/pagination';
+
 // createPagination() 
 
 // import { onCreat, creatCards} from './main/renderMainMarkup';

@@ -11,7 +11,12 @@ const refs = {
     modalBtnWatched: document.querySelector('.modal__btn--watched'),
     modalBtnQueue: document.querySelector('.modal__btn--queue'),
     headerLibraryBtnWatched: document.querySelector('.header__library--btn-watched'),
-    headerLibraryBtnQueue: document.querySelector(".header__library--btn-queue")
+    headerLibraryBtnQueue: document.querySelector(".header__library--btn-queue"),
+    headerLibraryBtn: document.querySelector('.header-library-cover'),
+    libraryBtnWatched: document.querySelector('.header__library--btn-watched'),
+    libraryBtnQueue: document.querySelector('.header__library--btn-queue'),
+    libraryList: document.querySelector('.library-list'),
+
 }
 
 export default refs;

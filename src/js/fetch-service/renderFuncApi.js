@@ -31,10 +31,10 @@ import { refs } from './refs';
             <p>Genre</p>
           </li>
           <li class="modal__info-value">
-            <p><span class="modal__vote-design">${String(vote_average).slice(0,-2)}</span> / <span class="modal__votes-design">${vote_count}</span></p> 
-            <p>${String(popularity).slice(0,-2)}</p>
+            <p><span class="modal__vote-design">${toChangeNum(vote_average)}</span> / <span class="modal__votes-design">${vote_count}</span></p> 
+            <p>${toChangeNum(popularity)}</p>
             <p>${original_title}</p>
-            <p>${createGenres(genres)}</p>
+            <p>${toChangeGenres(genres)}</p>
           </li>
         </ul>
         <h3 class="modal__about">ABOUT</h3>
@@ -49,8 +49,12 @@ import { refs } from './refs';
    refs.modalContent.insertAdjacentHTML('beforeend', markup);
 }
  
-function createGenres(data) {
+function toChangeGenres(data) {
 return data.map(el => el.name).join(', ')
+}
+
+function toChangeNum(data) {
+ return data % 1 === 0 ? data.toFixed() : data.toFixed(1);
 }
 
 // сделать функцию проверки количества чисел на вход если допустим 7 то слайсить на два числа если восемь то слайсить на три

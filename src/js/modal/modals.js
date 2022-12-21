@@ -5,8 +5,8 @@ import { onCreat, creatCards } from '../main/renderMainMarkup';
 
 const fetchFilmsApi = new FetchFilmsApi();
 const num = 345.5767;
-const numS = Math.ceil(1.234)  //String(num).slice(0, -3);
-console.log(numS);
+const numS = (345.5767).toFixed(2);  //String(num).slice(0, -3);
+
 refs.gallery.addEventListener('click', openModal); 
  refs.modalCloseBtn.addEventListener('click', closeModal);
 

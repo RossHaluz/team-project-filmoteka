@@ -17,13 +17,11 @@ async function onCreat() {
       
       creatCards(response.data.results);
 
-  const pagination = createPagination(data.total_results, data.total_pages);
+      const pagination = createPagination(response.total_results, response.total_pages);
   pagination.on('beforeMove', ({ page }) => {
     refs.gallery.innerHTML = '';
-    fetchApi.actualPage = page;
-    fetchApi.fetchGenresList(mediaType, genreType, page).then(data => {
-      // refs.gallery.innerHTML = creatCards(data.results);
-      console.log(data.page)
+    fetchApi.fetchGenresList(page).then(data => {
+      refs.gallery.insertAdjacentHTML('beforeend', creatCards(data.results));
     });
   });
     })

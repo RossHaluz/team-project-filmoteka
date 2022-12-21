@@ -35,3 +35,15 @@ function onEscClick(evt) {
 
     }
 }
+
+function onBackdropClick(event) {
+    if (event.currentTarget === event.target) {
+        closeModal();
+    }
+}
+
+function onEscKeyPress(event) {
+    if (event.code === 'Escape') {
+        closeModal();
+    }
+}

@@ -6,8 +6,7 @@
     cursor: pointer;
     padding: 20px;
     overflow-y: auto;
-    
-    transition: opacity 300ms ease-in-out;
+
     z-index: 1000;
     @include mq(tab-only) {
         padding: 32px;
@@ -54,22 +53,21 @@
     }
 }
 .modal__close {
-position: absolute;
+    position: absolute;
     padding: 0px;
     top: 8px;
     right: 8px;
     border: none;
     background: none;
     cursor: pointer;
-    
+    fill: black;
+    opacity: 0.5;
 }
 .modal__icon-close {
-fill: black;
-    opacity: 0.5;
-    
+    pointer-events: none;
 }
 
-.modal__icon-close:hover {
+.modal__close:hover {
     opacity: 1;
 }
 
@@ -90,8 +88,6 @@ fill: black;
         height: 374px;
         margin-bottom: 0px;
     }
-
-
 }
 
 .modal__text-content {

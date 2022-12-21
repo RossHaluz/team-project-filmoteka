@@ -13,6 +13,7 @@ let filmId;
 refs.galeryList.addEventListener('click', onClickFilm);
 refs.closeBtn.addEventListener('click', onClickCloseBtn);
 refs.modalBtnWatched.addEventListener('click', onClickBtnWatched);
+refs.modalBtnQueue.addEventListener('click', onClickBtnQueue);
 
 
 export function onClickFilm(e) {
@@ -48,4 +49,9 @@ function closeModal() {
 
 export function onClickBtnWatched() {
     localStorageFilms.setFilms(filmId);
+    
+}
+
+export function onClickBtnQueue() {
+    localStorageFilms.setQueueMovie(filmId)
 }

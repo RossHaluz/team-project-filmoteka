@@ -11,7 +11,7 @@ const localStorageFilms = new LocalStorageServiceFilms()
 
 export function onClickBtnWatched() {
     refs.libraryBtnQueue.classList.remove('hedear__library--btn-active');
-    refs.libraryBtnWatched.classList.add('hedear__library--btn-active');  
+    refs.libraryBtnWatched.classList.add('hedear__library--btn-active');
 }
 
 export function onClickBtnQueue(){

@@ -15,7 +15,7 @@ export function getFilmsById() {
 }
  
 
-function creatLibraryMarkup({poster_path, title, release_date}){ 
+function creatLibraryMarkup({poster_path, title}){ 
     const markup =  `
     <li class="library-list__item card-set-iteam">
     <img src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="">

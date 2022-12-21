@@ -9,26 +9,26 @@ async function onCreat() {
 
   await fetchFilmsApi
     .getAllFilmsData(options)
-    .then(response =>  { 
-      creatCards(response.data.results)
+    .then(response => {
+      creatCards(response.data.results);
     })
     .catch(error => console.log(error));
-  
 }
 
 async function creatCards(data) {
   //функция для создания разметки карточек
   allGenres = await topicalAllGenres(); // строка для скачивания все актуальные жанры перед созданием разметки
 
-  
   console.log(data);
   const markup = data
-    .map(({ id, poster_path, title, genre_ids, release_date }) => {
-      return `<li class="gallery-card card">
-              <img data-id=${id} data-ganres='${genresSerch(
-        genre_ids
-      )}'
-              src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="${title}" class="card-image">
+    .map(
+      ({ id, poster_path, title, genre_ids, release_date, backdrop_path }) => {
+        return `<li class="gallery-card card">
+              <img data-id=${id} data-ganres='${genresSerch(genre_ids)}'
+              src="${checkImage(
+                poster_path,
+                backdrop_path
+              )}" alt="${title}" class="card-image">
             <div class="card-info">
               <p class="card-name">${title}</p>
               <p class="card-genre">${genresSerch(genre_ids)}
@@ -36,11 +36,22 @@ async function creatCards(data) {
               </span></p>
               </div>
           </li>`;
-    })
+      }
+    )
     .join(``);
 
   refs.gallery.innerHTML = markup;
-  
+}
+
+function checkImage(poster, backdrop) {
+  console.log(poster, backdrop);
+  if (poster == null) {
+    if (backdrop == null) {
+      return `https://images.pexels.com/photos/339379/pexels-photo-339379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1`;
+    }
+    retern`https://image.tmdb.org/t/p/w500/${backdrop}`;
+  }
+  return `https://image.tmdb.org/t/p/w500/${poster}`;
 }
 
 async function topicalAllGenres() {
@@ -58,9 +69,11 @@ async function topicalAllGenres() {
 
 function genresSerch(data) {
   // поиск всех нужных жанров фильма по Ид
-  return data.map(element => {
-     return allGenres.filter(el => el.id == element).map(el => el.name);
-    }).join(`, `);
+  return data
+    .map(element => {
+      return allGenres.filter(el => el.id == element).map(el => el.name);
+    })
+    .join(`, `);
 }
 
 function checkYear(data) {
@@ -68,8 +81,7 @@ function checkYear(data) {
   if (data) {
     return `| ${data.slice(0, 4)}`;
   }
-  // return ``;
+  return ``;
 }
 
-
-export {onCreat, creatCards, genresSerch}
+export { onCreat, creatCards, genresSerch };

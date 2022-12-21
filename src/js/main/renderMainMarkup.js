@@ -1,5 +1,9 @@
 import FetchFilmsApi from '../fetch-service/fechFilmsApi';
 import { refs } from '../fetch-service/refs';
+import { createPagination } from '../paginatin/pagination';
+
+const fetchApi = new FetchFilmsApi();
+
 
 let allGenres = {}; //глобальная переменная для жанров
 
@@ -9,8 +13,19 @@ async function onCreat() {
 
   await fetchFilmsApi
     .getAllFilmsData(options)
-    .then(response =>  { 
-      creatCards(response.data.results)
+    .then(response => { 
+      
+      creatCards(response.data.results);
+
+  const pagination = createPagination(data.total_results, data.total_pages);
+  pagination.on('beforeMove', ({ page }) => {
+    refs.gallery.innerHTML = '';
+    fetchApi.actualPage = page;
+    fetchApi.fetchGenresList(mediaType, genreType, page).then(data => {
+      // refs.gallery.innerHTML = creatCards(data.results);
+      console.log(data.page)
+    });
+  });
     })
     .catch(error => console.log(error));
   

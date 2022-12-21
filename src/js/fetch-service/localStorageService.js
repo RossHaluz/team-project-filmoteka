@@ -1,9 +1,7 @@
 import getTrendingMoviesAndRender from "../main/renderMainMarkup";
 import FetchFilmsApi from "./fechFilmsApi";
-import { onClickFilm } from '../modal/modals';
 import refs from "./refs";
 
-const fetchApi = new FetchFilmsApi ()
 
 export class LocalStorageServiceFilms {
     constructor() {

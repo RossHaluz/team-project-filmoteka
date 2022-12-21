@@ -49,6 +49,8 @@ function closeModal() {
 
 export function onClickBtnWatched() {
     localStorageFilms.setFilms(filmId);
+    refs.modalBtnWatched.textContent = 'Remove film';
+    refs.modalBtnWatched.style.color = "red";
     
 }
 

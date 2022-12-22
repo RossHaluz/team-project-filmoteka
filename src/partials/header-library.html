@@ -1,36 +1,46 @@
-<header class="header">
-  <div class="container">
-    <div class="header-cover">
-      <a href="/src/index.html" class="header__logo link">
-        <svg class="header__logo--icon" width="32" height="32">
-          <use href="./img/svg/sprite.svg#logo"></use>
-        </svg>
-        Filmoteka
+<header class="header-library">
+  <div class="header-library__container container">
+    <div class="header-library__section">
+      <a href="./index.html" class="header-library__logo logo link">
+        <span class="logo__wrap">
+          <span class="logo__icons">
+            <svg class="logo__icon--first" width="24" height="24">
+              <use href="./img/svg/sprite.svg#logo"></use>
+            </svg>
+            <svg class="logo__icon--second" width="24" height="24">
+              <use href="./img/svg/sprite.svg#logo"></use>
+            </svg>
+          </span>
+        </span>
+        <!-- <svg class="logo-library__icon" width="20" height="20">
+            <use href="./img/svg/sprite.svg#logo"></use>
+        </svg> -->
+        <span class="logo__title">Filmoteka</span>
       </a>
 
-      <ul class="header__list list">
-        <a href="/src/index.html" class="header__list-link link"
-          ><li class="header__list--item">Home</li></a
-        >
-        <a href="/src/library.html" class="header__list-link link"
-          ><li class="header__list--item">My librery</li></a
-        >
-      </ul>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a href="./index.html" class="nav__link link">Home</a>
+          </li>
+          <li class="nav__item">
+            <a href="" class="nav__link link current nav__link--current"
+              >my library</a
+            >
+          </li>
+        </ul>
+      </nav>
     </div>
-    <input type="checkbox" class="changeColor" />
-    <div class="header-library-cover">
-      <button
-        type="button"
-        class="hedear__library--btn header__library--btn-watched"
-      >
-        Watched
-      </button>
-      <button
-        type="button"
-        class="hedear__library--btn header__library--btn-queue"
-      >
-        Queue
-      </button>
+
+    <div class="filter">
+      <ul class="filter__list">
+        <li class="filter__item">
+          <button class="filter__button btn btn--active">Watched</button>
+        </li>
+        <li class="filter__item">
+          <button class="filter__button btn">queue</button>
+        </li>
+      </ul>
     </div>
   </div>
 </header>

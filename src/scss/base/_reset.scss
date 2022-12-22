@@ -1,6 +1,13 @@
+* {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+  }
+
 ul,
-p,
-body {
+p {
     padding: 0;
     margin: 0;
 }

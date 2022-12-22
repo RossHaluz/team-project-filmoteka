@@ -79,6 +79,7 @@ function onEscClick(evt) {
         console.log('Escapet')
         refs.backdrop.classList.add('is-hidden');
         document.body.classList.remove('no-scroll');
+        window.removeEventListener('scroll', blockScroll);
         // window.removeEventListener('keydown', onEscClick);
 
     }
@@ -89,6 +90,7 @@ function onBackdropClick(evt) {
         console.log('backdrop')
         refs.backdrop.classList.add('is-hidden');
         document.body.classList.remove('no-scroll');
+        window.removeEventListener('scroll', blockScroll);
     }
 }
 // зверху код закриття модалки по esc та кліку по backdrop

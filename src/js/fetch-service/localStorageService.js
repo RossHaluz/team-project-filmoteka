@@ -5,12 +5,13 @@ import refs from "./refs";
 
 export class LocalStorageServiceFilms {
     constructor() {
-        this.keyName = 'films';
+        this.keyNameWached = 'films-watched';
+        this.keyNameQueue = 'films-queue';
         this.idFilm = null;
     }
 
     getFilms() {
-        const filmsLocalStorage = localStorage.getItem(this.keyName)
+        const filmsLocalStorage = localStorage.getItem(this.keyNameWached)
 
         if (filmsLocalStorage !== null) {
             return JSON.parse(filmsLocalStorage)
@@ -30,7 +31,26 @@ export class LocalStorageServiceFilms {
             films.splice(index, 1)
         }
 
-        localStorage.setItem(this.keyName, JSON.stringify(films));
+        localStorage.setItem(this.keyNameWached, JSON.stringify(films));
+
+        return {
+            pushFilm,
+            films,
+        }
+    }
+
+    setQueueMovie(id) {
+          let films = this.getFilms();
+        let pushFilm = false;
+        const index = films.indexOf(id);
+        if (index === -1) {
+            films.push(id);
+            pushFilm = true;
+        } else {
+            films.splice(index, 1)
+        }
+
+        localStorage.setItem(this.keyNameQueue, JSON.stringify(films));
 
         return {
             pushFilm,

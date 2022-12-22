@@ -1,37 +1,55 @@
 <header class="header">
+  <div class="header__section">
   <div class="container">
-    <div class="header-cover">
-      <a href="#" class="header__logo link">
-        <svg class="header__logo--icon" width="32" height="32">
-          <use href="./img/svg/sprite.svg#logo"></use>
-        </svg>
-        Filmoteka
+    <div class="header__body">
+      <a class="logo link" href="./">
+        <span class="logo__wrap">
+          <span class="logo__icons">
+  <svg class="logo__icon--first" width="24" height="24">
+    <use href="./img/svg/sprite.svg#logo"></use>
+  </svg>
+   <svg class="logo__icon--second" width="24" height="24">
+    <use href="./img/svg/sprite.svg#logo"></use>
+  </svg>
+  </span>
+          </span>
+        <span class="logo__txt">Filmoteka</span>
       </a>
-
-      <ul class="header__list list">
-        <a href="/src/index.html" class="header__list-link link"
-          ><li class="header__list--item">Home</li></a
-        >
-        <a href="/src/library.html" class="header__list-link link"
-          ><li class="header__list--item">My librery</li></a
-        >
-      </ul>
+      <div class="header__nav">
+        <nav class="nav">
+          <ul class="nav__list list">
+            <li class="nav__item">
+              <a
+                class="nav__link link current nav__link--current"
+                href="./index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav__item">
+              <a class="nav__link link" href="./library.html">my library</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
-    <input type="checkbox" class="changeColor" />
-    <form action="submit" class="header-form js-form">
-      <div class="header-form-cover">
+    <input type="checkbox" class="changeColor">
+    <div class="header__search search-form">
+      <form action="#" class="search-form__bar">
         <input
+          class="search-form__input"
           type="text"
-          class="header-form__input"
-          placeholder="Movie search..."
+          autocomplete="off"
+          name="filmname"
+          placeholder="Movie search"
         />
-
-        <button type="submit" class="header-form__searchBtn">
-          <svg class="header-form__searchBtn--icon" width="12" height="12">
+        <button type="submit" class="search-form__btn">
+          <svg width="12" height="12">
             <use href="./img/svg/sprite.svg#search"></use>
           </svg>
         </button>
-      </div>
-    </form>
+      </form>
+      <div class="search-form__notification"></div>
+    </div>
   </div>
+</div>
 </header>

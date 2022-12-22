@@ -1,4 +1,3 @@
-
 // const modal = document.querySelector('.modal');
 
 
@@ -22,20 +21,10 @@
 // FT-20 Реалізувати закриття модалки за натисканням на клавішу ESC і за кліком поза межами модалки, не забути зняти слухачів
 
 
-// закинуть в function openModal
 window.addEventListener('keydown', onEscClick)
 
-// ________________
 
-function onEscClick(evt) {
-    if (evt.code === 'Escape') {
-        closeModal();
-        modal.classList.remove('visiable');
-        modal.removeEventListener('click', closeModal);
-        window.removeEventListener('keydown', onEscClick);
 
-    }
-}
 
 import FetchFilmsApi from '../fetch-service/fechFilmsApi';
 import { refs } from '../fetch-service/refs';
@@ -45,40 +34,69 @@ import { onCreat, creatCards } from '../main/renderMainMarkup';
 const fetchFilmsApi = new FetchFilmsApi();
 
 refs.gallery.addEventListener('click', openModal); //galleryCard.dataset.id
- refs.modalCloseBtn.addEventListener('click', closeModal);
+refs.modalCloseBtn.addEventListener('click', closeModal);
 
 async function openModal(e) {
-  if (!e.target.classList.contains('card-image')) {
-    return;
-  }
-  document.body.classList.add('no-scroll')
-  refs.modalWrap.innerHTML = ''
-  const filmId = e.target.dataset.id;
-  
-  fetchFilmsApi
-    .getCurrentFilm({ id: filmId })
-    .then(data => 
-      createMarkup(data.data)
-    )
-    .catch(error => console.log(error));
-    
+    if (!e.target.classList.contains('card-image')) {
+        return;
+    }
+    document.body.classList.add('no-scroll')
+    refs.modalWrap.innerHTML = ''
+    const filmId = e.target.dataset.id;
+
+    fetchFilmsApi
+        .getCurrentFilm({ id: filmId })
+        .then(data =>
+            createMarkup(data.data)
+        )
+        .catch(error => console.log(error));
+
     refs.backdrop.classList.remove('is-hidden');
-  window.addEventListener('scroll', blockScroll);
- 
+    window.addEventListener('scroll', blockScroll);
+
 }
-  
+
 function blockScroll() {
-  window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
 }
 
 
 async function closeModal(e) {
-  if (e.target === refs.modalCloseBtn) {
-    refs.backdrop.classList.add('is-hidden');
-    document.body.classList.remove('no-scroll');
-    window.removeEventListener('scroll', blockScroll);
-  }
+    if (e.target === refs.modalCloseBtn) {
+        refs.backdrop.classList.add('is-hidden');
+        document.body.classList.remove('no-scroll');
+        window.removeEventListener('scroll', blockScroll);
+    }
 }
+
+// внизу код закриття модалки по esc та кліку по backdrop
+
+const backdrop = document.querySelector('.backdrop')
+backdrop.addEventListener('click', onBackdropClick)
+
+function onEscClick(evt) {
+    if (evt.code === 'Escape') {
+        console.log('Escapet')
+        refs.backdrop.classList.add('is-hidden');
+        document.body.classList.remove('no-scroll');
+        window.removeEventListener('scroll', blockScroll);
+        // window.removeEventListener('keydown', onEscClick);
+
+    }
+}
+
+function onBackdropClick(evt) {
+    if (evt.currentTarget === evt.target) {
+        console.log('backdrop')
+        refs.backdrop.classList.add('is-hidden');
+        document.body.classList.remove('no-scroll');
+        window.removeEventListener('scroll', blockScroll);
+    }
+}
+// зверху код закриття модалки по esc та кліку по backdrop
+
+
+
 // refs.modal.addEventListener('click', e => {
 //   if (e.target === refs.modal) {
 //     closeModal();
@@ -95,7 +113,7 @@ async function closeModal(e) {
 // }
 
 // function closeModal(event) {
- 
+
 //   const target = event.target;
 //   console.log(target); // при нажатии на сам крестик (другой таргет) модалка не
 
@@ -216,4 +234,3 @@ async function closeModal(e) {
 //     .catch(error => console.log(error));
 // }
 // fetchDataMovie();
-

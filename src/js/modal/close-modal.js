@@ -6,6 +6,7 @@ const refs = {
 refs.linkOpenModal.addEventListener('click', toggleModal);
 refs.btnCloseModal.addEventListener('click', toggleModal);
 
-function toggleModal() {
+function toggleModal(evt) {
+  evt.preventDefault();
   refs.teamModal.classList.toggle('is-hidden');
 }

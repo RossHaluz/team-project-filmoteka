@@ -56,6 +56,7 @@
     text-align: center;
     max-width: 260px;
     transition: transform .3s linear;
+    height: 4600px;
   
     .backdrop.is-hidden & {
       transform: translate(-50%, -50%) scale(0) rotate(120deg);
@@ -65,12 +66,13 @@
       top: -60px;  
       width: 100%;
       max-width: 600px;
+      height: 2500px;
     }
   
     @include mq(desk) {
     left: 10px;
         max-width: 1200px;
-        max-height: 1350px;
+        height: 1400px;
     }
   }
 
@@ -242,6 +244,7 @@
 .team__img {
   text-align: center;
   margin-bottom: 32px;
+  height: 223px;
 }
 
 

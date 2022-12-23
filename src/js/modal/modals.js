@@ -45,7 +45,7 @@ import { onCreat, creatCards } from '../main/renderMainMarkup';
 const fetchFilmsApi = new FetchFilmsApi();
 
 refs.gallery.addEventListener('click', openModal); //galleryCard.dataset.id
- refs.modalCloseBtn.addEventListener('click', closeModal);
+refs.modalCloseBtn.addEventListener('click', closeModal);
 
 async function openModal(e) {
   if (!e.target.classList.contains('card-image')) {
@@ -217,3 +217,18 @@ async function closeModal(e) {
 // }
 // fetchDataMovie();
 
+/* AddWhatched and AddQueue */
+
+const fethApi = new FetchFilmsApi()
+const localStorageFilms = new LocalStorageServiceFilms();
+let filmId;
+
+refs.modalBtnWatched.addEventListener('click', onClickBtnWatched);
+refs.modalBtnQueue.addEventListener('click', onClickBtnQueue);
+
+export function onClickBtnWatched() {
+      localStorageFilms.setFilms(filmId);
+    
+}export function onClickBtnQueue() {
+    localStorageFilms.setQueueMovie(filmId)
+}

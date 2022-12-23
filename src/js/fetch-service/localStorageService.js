@@ -39,6 +39,16 @@ export class LocalStorageServiceFilms {
         }
     }
 
+    getQueueFilms() { 
+         const filmsLocalStorage = localStorage.getItem(this.keyNameQueue) 
+        
+        if (filmsLocalStorage !== null) { 
+            return JSON.parse(filmsLocalStorage)
+        }
+
+        return [];
+    }
+
     setQueueMovie(id) {
           let films = this.getFilms();
         let pushFilm = false;

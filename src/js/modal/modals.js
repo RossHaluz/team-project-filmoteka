@@ -1,4 +1,4 @@
-
+import { LocalStorageServiceFilms } from "../fetch-service/localStorageService";
 // const modal = document.querySelector('.modal');
 
 

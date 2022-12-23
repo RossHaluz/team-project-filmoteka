@@ -21,6 +21,14 @@ export function onClickBtnLibraryWatched() {
       getFilmsById()
 }
 
+function getFilmsQueueByID() {
+    const getFilms = localStorageFilms.getQueueFilms();
+    getFilms.map(film => {
+        fetchApi.getIdFilm = film
+            fetchApi.getDateilsMovieById(id).then(data => creatLibraryMarkup(data));
+    })
+}
+
 export function onClickBtnLibraryQueue() {
     refs.libraryList.innerHTML = "";
     getFilmsQueueByID()

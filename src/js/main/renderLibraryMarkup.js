@@ -4,6 +4,8 @@ import refs from "../fetch-service/refs";
 
 const fetchApi = new FetchFilmsApi();
 const localStorageFilms = new LocalStorageServiceFilms()
+refs.libraryBtnWatched.addEventListener('click', onClickBtnLibraryWatched);
+refs.libraryBtnQueue.addEventListener('click', onClickBtnLibraryQueue);
 
 export function getFilmsById() {
     const getFilms = localStorageFilms.getFilms();
@@ -14,6 +16,16 @@ export function getFilmsById() {
 
 }
  
+export function onClickBtnLibraryWatched() {
+    refs.libraryList.innerHTML = '';
+      getFilmsById()
+}
+
+export function onClickBtnLibraryQueue() {
+    refs.libraryList.innerHTML = "";
+    getFilmsQueueByID()
+}
+
 
 function creatLibraryMarkup({poster_path, title}){ 
     const markup =  `

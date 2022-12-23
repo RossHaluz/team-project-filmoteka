@@ -7,10 +7,7 @@ const refs = {
   modalCloseBtn: document.querySelector('.modal__close'),
   backdrop: document.querySelector('.backdrop'),
   galleryCard: document.querySelector('.gallery-card'),
-  modalWrap: document.querySelector('.modal__content'),
-  //   linkOpenModal: document.querySelector('[data-open-modal]'),
-  //   btnCloseModal: document.querySelector('[data-close-modal]'),
-  //   teamModal: document.querySelector('[data-modal]'),
+  modalContent: document.querySelector('.modal__content'),
 };
 
-export { refs }
+export { refs };

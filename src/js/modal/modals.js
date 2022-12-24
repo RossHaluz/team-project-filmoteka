@@ -41,6 +41,7 @@ import FetchFilmsApi from '../fetch-service/fechFilmsApi';
 import { refs } from '../fetch-service/refs';
 import { createMarkup } from '../fetch-service/renderFuncApi';
 
+
 const fetchFilmsApi = new FetchFilmsApi();
 
 refs.gallery.addEventListener('click', openModal); //galleryCard.dataset.id

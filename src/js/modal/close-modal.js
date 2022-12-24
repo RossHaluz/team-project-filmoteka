@@ -10,14 +10,14 @@ function toggleModal(evt) {
     evt.preventDefault();
     document.body.classList.add('no-scroll');
     refs.teamModal.classList.toggle('is-hidden');
-
 }
 window.addEventListener('keydown', onEscClick);
 
 function onEscClick(evt) {
     if (evt.code === 'Escape') {
+        console.log('Escape');
         evt.preventDefault();
-        refs.teamModal.classList.add('is-hidden');
+        refs.teamModal.classList.toggle('is-hidden');
     }
 }
 
@@ -27,7 +27,8 @@ console.log(backdrop);
 
 function onBackdropClick(evt) {
     if (evt.currentTarget === evt.target) {
+        console.log('Backdrop');
         evt.preventDefault();
-        refs.teamModal.classList.add('is-hidden');
+        refs.teamModal.classList.toggle('is-hidden');
     }
 }

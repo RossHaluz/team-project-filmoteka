@@ -1,4 +1,27 @@
 import { refs } from './refs';
+import { LocalStorageServiceFilms } from '../fetch-service/localStorageService';
+
+const localStorageServiceFilms = new LocalStorageServiceFilms();
+const movieStore = localStorageServiceFilms.getFilms();
+let activeText = '';
+refs.backdrop.addEventListener('click', addWatchedBtnClick);
+function addWatchedBtnClick(e) {
+  if (
+    e.target.innerText === 'ADD TO WATCHED' ||
+    e.target.innerText === 'REMOVE FROM WATCHED'
+  ) {
+    handlerSetLocalStorage(e.target.dataset.id);
+  }
+}
+function handlerSetLocalStorage(id) {
+  const btn = document.querySelector('.modal__watched-btn');
+  const { pushFilm, movies } = localStorageServiceFilms.setFilms(id);
+  if (pushFilm) {
+    btn.textContent = 'REMOVE FROM WATCHED';
+  } else {
+    btn.textContent = 'ADD TO WATCHED';
+  }
+}
 
 function createMarkup({
   id,
@@ -11,6 +34,11 @@ function createMarkup({
   popularity,
   genres,
 }) {
+  if (movieStore.indexOf(id) === -1) {
+    activeText = 'ADD TO WATCHED';
+  } else {
+    activeText = 'REMOVE FROM WATCHED';
+  }
   const markup = `<div class ="modal__img-box">
       <img
         class="modal__image"
@@ -41,7 +69,7 @@ function createMarkup({
         <h3 class="modal__about">ABOUT</h3>
         <p class="modal__about-text">${overview}</p>
         <div class="modal__btns">
-          <button type="button" class="modal__watched-btn">Add to Watched</button>
+          <button type="button" class="modal__watched-btn" data-id = ${id}>${activeText}</button>
           <button type="button" class="modal__queue-btn">Add to Queue</button>
         </div>
       </div>

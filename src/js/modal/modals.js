@@ -1,4 +1,3 @@
-
 import FetchFilmsApi from '../fetch-service/fechFilmsApi';
 import { refs } from '../fetch-service/refs';
 import { createMarkup } from '../fetch-service/renderFuncApi';
@@ -39,4 +38,3 @@ async function closeModal(e) {
 }
 
 export { openModal };
-

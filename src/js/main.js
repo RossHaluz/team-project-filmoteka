@@ -13,3 +13,7 @@ import { onSearchTrailer, getTrailerId, openTrailersGallary, showTrailersGallary
 import { onClickBtnNext } from './paginatin/pagination';
 
 
+
+
+
+

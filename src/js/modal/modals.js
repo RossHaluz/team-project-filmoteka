@@ -49,7 +49,7 @@ function onEscClick(evt) {
   }
 }
 
-const backdrop = document.querySelector('.footer__backdrop');
+const backdrop = document.querySelector('.backdrop');
 backdrop.addEventListener('click', onBackdropClick);
 console.log(backdrop);
 

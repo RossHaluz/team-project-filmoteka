@@ -37,4 +37,4 @@ async function closeModal(e) {
   window.removeEventListener('keydown', closeModal);
 }
 
-export { openModal };
+export { openModal, closeModal };

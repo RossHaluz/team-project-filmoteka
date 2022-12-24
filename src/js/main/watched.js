@@ -2,16 +2,10 @@ import FetchFilmsApi from '../fetch-service/fechFilmsApi';
 import { LocalStorageServiceFilms } from '../fetch-service/localStorageService';
 import { refs } from '../fetch-service/refs';
 import { API_KEY, ID_URL } from '../fetch-service/api-vars';
-import {
-  createMarkup,
-  toChangeGenres,
-  toChangeNum,
-} from '../fetch-service/renderFuncApi';
-const fetchFilmsApi = new FetchFilmsApi();
-// refs.libraryList.addEventListener('click', createMarkup);
+
+const localStorageFilms = new LocalStorageServiceFilms();
 refs.watched.addEventListener('click', onClickWatched);
 // refs.queue.addEventListener('click', onClickQueue);
-const localStorageFilms = new LocalStorageServiceFilms();
 // function onClickQueue() {
 //   refs.queue.classList.add('btn--active');
 //   refs.watched.classList.remove('btn--active');
@@ -31,13 +25,13 @@ function fetchFilmById(id) {
     });
 }
 
-export function renderFilmsById() {
+function renderFilmsById() {
   if (refs.watched.classList.contains('btn--active')) {
     console.log('it work');
     refs.queue.classList.remove('btn--active');
     refs.watched.classList.add('btn--active');
     refs.libraryList.innerHTML = '';
-    getIds = localStorageFilms.getFilms();
+    const getIds = localStorageFilms.getFilms();
     console.log(getIds);
     getIds.map(id => {
       fetchFilmById(id).then(filmData => {

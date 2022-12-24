@@ -32,9 +32,31 @@ async function closeModal(e) {
   ) {
     document.body.classList.remove('no-scroll');
     refs.backdrop.classList.add('is-hidden');
-  }
+    }
   refs.backdrop.removeEventListener('click', closeModal);
   window.removeEventListener('keydown', closeModal);
 }
 
 export { openModal };
+
+window.addEventListener('keydown', onEscClick)
+
+function onEscClick(evt) {
+  if (evt.code === 'Escape') {
+    console.log('Escape');
+    document.body.classList.remove('no-scroll');
+    refs.backdrop.classList.add('is-hidden');
+  }
+}
+
+const backdrop = document.querySelector('.footer__backdrop');
+backdrop.addEventListener('click', onBackdropClick);
+console.log(backdrop);
+
+function onBackdropClick(evt) {
+  if (evt.currentTarget === evt.target) {
+    console.log('Backdrop');
+    document.body.classList.remove('no-scroll');
+    refs.backdrop.classList.add('is-hidden');
+  }
+}

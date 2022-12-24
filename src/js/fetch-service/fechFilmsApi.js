@@ -56,7 +56,7 @@ class FetchFilmsApi {
       console.log(err);
     }
   }
-    
+
   async fetchWithSearchFilmData({ mediaType, lang, page, include_adult }) {
     const resp = await axios.get(
       `search/${mediaType}?api_key=${this.#API_KEY}&language=${lang}&query=${
@@ -106,6 +106,14 @@ class FetchFilmsApi {
     }
   }
 
+  async fetchTrailer(id) {
+    const response = await axios.get(
+      `movie/${id}/videos?api_key=${this.#API_KEY} `,
+      this.config
+    );
+    return response;
+  }
+
   incrementPage({ step = 1 }) {
     this.page += step;
   }
@@ -126,6 +134,13 @@ class FetchFilmsApi {
   }
   set totalPages(newValue) {
     this.#totalPages = newValue;
+  }
+  get getIdFilm() {
+    return this.id;
+  }
+
+  set getIdFilm(newId) {
+    this.id = newId;
   }
 }
 // const api = new FetchFilmsApi();

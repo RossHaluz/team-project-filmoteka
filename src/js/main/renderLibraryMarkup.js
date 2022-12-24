@@ -1,11 +1,15 @@
-import FetchFilmsApi from "../fetch-service/fechFilmsApi";
-import { LocalStorageServiceFilms } from "../fetch-service/localStorageService";
-import refs from "../fetch-service/refs";
+// export function getFilmsById() {
+//   console.log('click');
+//   const getFilms = localStorageFilms.getFilms();
+//   getFilms.map(film => {
+//     fetchApi.getIdFilm = film;
+//     const options = { mediaType: 'movie', id: film };
+//     fetchApi.getCurrentFilm(options).then(data => creatLibraryMarkup(data));
+//   });
+// }
 
 const fetchApi = new FetchFilmsApi();
 const localStorageFilms = new LocalStorageServiceFilms()
-refs.libraryBtnWatched.addEventListener('click', onClickBtnLibraryWatched);
-refs.libraryBtnQueue.addEventListener('click', onClickBtnLibraryQueue);
 
 export function getFilmsById() {
     const getFilms = localStorageFilms.getFilms();
@@ -16,24 +20,6 @@ export function getFilmsById() {
 
 }
  
-export function onClickBtnLibraryWatched() {
-    refs.libraryList.innerHTML = '';
-      getFilmsById()
-}
-
-function getFilmsQueueByID() {
-    const getFilms = localStorageFilms.getQueueFilms();
-    getFilms.map(film => {
-        fetchApi.getIdFilm = film
-            fetchApi.getDateilsMovieById(id).then(data => creatLibraryMarkup(data));
-    })
-}
-
-export function onClickBtnLibraryQueue() {
-    refs.libraryList.innerHTML = "";
-    getFilmsQueueByID()
-}
-
 
 function creatLibraryMarkup({poster_path, title}){ 
     const markup =  `

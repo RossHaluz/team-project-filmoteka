@@ -1,4 +1,4 @@
-import { LocalStorageServiceFilms } from "../fetch-service/localStorageService";
+
 // const modal = document.querySelector('.modal');
 
 
@@ -40,50 +40,54 @@ function onEscClick(evt) {
 import FetchFilmsApi from '../fetch-service/fechFilmsApi';
 import { refs } from '../fetch-service/refs';
 import { createMarkup } from '../fetch-service/renderFuncApi';
-import { onCreat, creatCards } from '../main/renderMainMarkup';
 
 const fetchFilmsApi = new FetchFilmsApi();
 
 refs.gallery.addEventListener('click', openModal); //galleryCard.dataset.id
-refs.modalCloseBtn.addEventListener('click', closeModal);
+ refs.modalCloseBtn.addEventListener('click', closeModal);
 
 async function openModal(e) {
   if (!e.target.classList.contains('card-image')) {
     return;
   }
-  document.body.classList.add('no-scroll')
-  refs.modalWrap.innerHTML = ''
+
+  refs.backdrop.classList.remove('is-hidden');
+  document.body.classList.add('no-scroll');
+  refs.modalContent.innerHTML = '';
   const filmId = e.target.dataset.id;
-  
+
   fetchFilmsApi
     .getCurrentFilm({ id: filmId })
-    .then(data => 
-      createMarkup(data.data)
-    )
+    .then(data => createMarkup(data.data))
     .catch(error => console.log(error));
-    
-    refs.backdrop.classList.remove('is-hidden');
-  window.addEventListener('scroll', blockScroll);
- 
+  refs.backdrop.addEventListener('click', closeModal);
+  window.addEventListener('keydown', closeModal);
 }
-  
-function blockScroll() {
-  window.scrollTo(0, 0);
-}
-
 
 async function closeModal(e) {
-  if (e.target === refs.modalCloseBtn) {
-    refs.backdrop.classList.add('is-hidden');
+  if (
+    e.target === refs.modalCloseBtn ||
+    e.target === refs.backdrop ||
+    e.keyCode === 27
+  ) {
     document.body.classList.remove('no-scroll');
-    window.removeEventListener('scroll', blockScroll);
+    refs.backdrop.classList.add('is-hidden');
+    }
+  refs.backdrop.removeEventListener('click', closeModal);
+  window.removeEventListener('keydown', closeModal);
+}
+
+export { openModal };
+
+window.addEventListener('keydown', onEscClick)
+
+function onEscClick(evt) {
+  if (evt.code === 'Escape') {
+    console.log('Escape');
+    document.body.classList.remove('no-scroll');
+    refs.backdrop.classList.add('is-hidden');
   }
 }
-// refs.modal.addEventListener('click', e => {
-//   if (e.target === refs.modal) {
-//     closeModal();
-//   }
-// });
 
 // // function onClickCloseBtn() {
 // //   closeModal();
@@ -217,18 +221,3 @@ async function closeModal(e) {
 // }
 // fetchDataMovie();
 
-/* AddWhatched and AddQueue */
-
-const fethApi = new FetchFilmsApi()
-const localStorageFilms = new LocalStorageServiceFilms();
-let filmId;
-
-refs.modalBtnWatched.addEventListener('click', onClickBtnWatched);
-refs.modalBtnQueue.addEventListener('click', onClickBtnQueue);
-
-export function onClickBtnWatched() {
-      localStorageFilms.setFilms(filmId);
-    
-}export function onClickBtnQueue() {
-    localStorageFilms.setQueueMovie(filmId)
-}

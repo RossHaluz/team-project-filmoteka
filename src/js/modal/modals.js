@@ -1,6 +1,5 @@
 // const modal = document.querySelector('.modal');
 
-
 // modal.addEventListener('click', closeModal);
 
 // function closeModal(event) {
@@ -16,15 +15,9 @@
 //     }
 // }
 
-
-
 // FT-20 Реалізувати закриття модалки за натисканням на клавішу ESC і за кліком поза межами модалки, не забути зняти слухачів
 
-
-window.addEventListener('keydown', onEscClick)
-
-
-
+window.addEventListener('keydown', onEscClick);
 
 import FetchFilmsApi from '../fetch-service/fechFilmsApi';
 import { refs } from '../fetch-service/refs';
@@ -37,65 +30,59 @@ refs.gallery.addEventListener('click', openModal); //galleryCard.dataset.id
 refs.modalCloseBtn.addEventListener('click', closeModal);
 
 async function openModal(e) {
-    if (!e.target.classList.contains('card-image')) {
-        return;
-    }
-    document.body.classList.add('no-scroll')
-    refs.modalWrap.innerHTML = ''
-    const filmId = e.target.dataset.id;
+  if (!e.target.classList.contains('card-image')) {
+    return;
+  }
+  document.body.classList.add('no-scroll');
+  refs.modalWrap.innerHTML = '';
+  const filmId = e.target.dataset.id;
 
-    fetchFilmsApi
-        .getCurrentFilm({ id: filmId })
-        .then(data =>
-            createMarkup(data.data)
-        )
-        .catch(error => console.log(error));
+  fetchFilmsApi
+    .getCurrentFilm({ id: filmId })
+    .then(data => createMarkup(data.data))
+    .catch(error => console.log(error));
 
-    refs.backdrop.classList.remove('is-hidden');
-    window.addEventListener('scroll', blockScroll);
-
+  refs.backdrop.classList.remove('is-hidden');
+  window.addEventListener('scroll', blockScroll);
 }
 
 function blockScroll() {
-    window.scrollTo(0, 0);
+  window.scrollTo(0, 0);
 }
 
-
 async function closeModal(e) {
-    if (e.target === refs.modalCloseBtn) {
-        refs.backdrop.classList.add('is-hidden');
-        document.body.classList.remove('no-scroll');
-        window.removeEventListener('scroll', blockScroll);
-    }
+  if (e.target === refs.modalCloseBtn) {
+    refs.backdrop.classList.add('is-hidden');
+    document.body.classList.remove('no-scroll');
+    window.removeEventListener('scroll', blockScroll);
+  }
 }
 
 // внизу код закриття модалки по esc та кліку по backdrop
 
-const backdrop = document.querySelector('.backdrop')
-backdrop.addEventListener('click', onBackdropClick)
+const backdrop = document.querySelector('.backdrop');
+backdrop.addEventListener('click', onBackdropClick);
 
 function onEscClick(evt) {
-    if (evt.code === 'Escape') {
-        console.log('Escapet')
-        refs.backdrop.classList.add('is-hidden');
-        document.body.classList.remove('no-scroll');
-        window.removeEventListener('scroll', blockScroll);
-        // window.removeEventListener('keydown', onEscClick);
-
-    }
+  if (evt.code === 'Escape') {
+    console.log('Escapet');
+    refs.backdrop.classList.add('is-hidden');
+    document.body.classList.remove('no-scroll');
+    window.removeEventListener('scroll', blockScroll);
+    // window.removeEventListener('keydown', onEscClick);
+  }
 }
 
 function onBackdropClick(evt) {
-    if (evt.currentTarget === evt.target) {
-        console.log('backdrop')
-        refs.backdrop.classList.add('is-hidden');
-        document.body.classList.remove('no-scroll');
-        window.removeEventListener('scroll', blockScroll);
-    }
+  if (evt.currentTarget === evt.target) {
+    console.log('backdrop');
+    refs.backdrop.classList.add('is-hidden');
+    document.body.classList.remove('no-scroll');
+    window.removeEventListener('scroll', blockScroll);
+  }
 }
+export { openModal, closeModal, onBackdropClick, onEscClick, blockScroll };
 // зверху код закриття модалки по esc та кліку по backdrop
-
-
 
 // refs.modal.addEventListener('click', e => {
 //   if (e.target === refs.modal) {

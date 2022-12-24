@@ -1,20 +1,47 @@
 import { genresSerch } from '../main/renderMainMarkup';
 import { onCreat, creatCards } from '../main/renderMainMarkup';
 import { refs } from './refs';
-
- function createMarkup({
-   id,
-   poster_path,
-   title,
-   overview,
-   vote_average,
-   vote_count,
-   original_title,
-   popularity,
-   genres,
- }) {
-   
-   const markup = `
+import { LocalStorageServiceFilms } from '../fetch-service/localStorageService';
+//  ADDED BY ANDRII
+const localStorageServiceFilms = new LocalStorageServiceFilms();
+const movieStore = localStorageServiceFilms.getFilms();
+let activeText = '';
+refs.backdrop.addEventListener('click', watchedBtnClick);
+function watchedBtnClick(e) {
+  if (
+    e.target.innerText === 'ADD TO WATCHED' ||
+    e.target.innerText === 'REMOVE FROM WATCHED'
+  ) {
+    handlerSetLocalStorage(e.target.dataset.id);
+  }
+}
+function handlerSetLocalStorage(id) {
+  const btn = document.querySelector('.modal__watched-btn');
+  const { pushFilm, movies } = localStorageServiceFilms.setFilms(id);
+  if (pushFilm) {
+    btn.textContent = 'REMOVE FROM WATCHED';
+  } else {
+    btn.textContent = 'ADD TO WATCHED';
+  }
+}
+// ADDED BY ANDRII SHKRAB
+function createMarkup({
+  id,
+  poster_path,
+  title,
+  overview,
+  vote_average,
+  vote_count,
+  original_title,
+  popularity,
+  genres,
+}) {
+  if (movieStore.indexOf(id) === -1) {
+    activeText = 'ADD TO WATCHED';
+  } else {
+    activeText = 'REMOVE FROM WATCHED';
+  }
+  const markup = `
       <img
         class="modal__image"
         src="https://image.tmdb.org/t/p/w500/${poster_path}"
@@ -40,22 +67,22 @@ import { refs } from './refs';
         <h3 class="modal__about">ABOUT</h3>
         <p class="modal__about-text">${overview}</p>
         <div class="modal__btns">
-          <button type="button" class="modal__watched-btn">Add to Watched</button>
+          <button type="button" class="modal__watched-btn" data-id = ${id}>${activeText}</button>
           <button type="button" class="modal__queue-btn">Add to Queue</button>
         </div>
       </div>
   `;
 
-   refs.modalWrap.insertAdjacentHTML('beforeend', markup);
+  refs.modalWrap.insertAdjacentHTML('beforeend', markup);
 }
- 
+
 function createGenres(data) {
-return data.map(el => el.name).join(', ')
+  return data.map(el => el.name).join(', ');
 }
 // <button type="button" class="modal__close">
-    // <svg class="icon-close" width="30" height="30">
-    // <use href="./img/svg/sprite.svg#icon-close">
-    // </use>
-    // </svg>
-    // </button>
+// <svg class="icon-close" width="30" height="30">
+// <use href="./img/svg/sprite.svg#icon-close">
+// </use>
+// </svg>
+// </button>
 export { createMarkup };

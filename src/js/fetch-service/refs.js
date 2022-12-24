@@ -8,9 +8,12 @@ const refs = {
   backdrop: document.querySelector('.backdrop'),
   galleryCard: document.querySelector('.gallery-card'),
   modalWrap: document.querySelector('.modal__content'),
+  watched: document.querySelector('.btn-watched'),
+  queue: document.querySelector('.btn-queue'),
+  libraryList: document.querySelector('.library-list'),
   //   linkOpenModal: document.querySelector('[data-open-modal]'),
   //   btnCloseModal: document.querySelector('[data-close-modal]'),
   //   teamModal: document.querySelector('[data-modal]'),
 };
 
-export { refs }
+export { refs };

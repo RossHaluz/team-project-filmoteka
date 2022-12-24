@@ -43,6 +43,7 @@ function showTrailersGallary() {
       // якщо після запиту Є масив з відео, то відкривається модалка відео-галереї
       console.log(videosArr);
       overlayForVideo.style.width = '100%';
+      document.body.classList.add('no-scroll');
       // перебираємо всі запропоновіні відео, дістаємо ТІЛЬКИ трейлери, додаємо їх в масив трейлерів embedTrailer
       videosArr.forEach(video => {
         let { key, site, name, type } = video;
@@ -60,9 +61,11 @@ function showTrailersGallary() {
   });
 }
 
-// закриття модалки з трейлерами при натисканні на кнопку "Х"
+// закриття модалки з трейлерами і очищення контенту відео-галереї при натисканні на кнопку "Х"
 function closeTrailersGallary() {
   overlayForVideo.style.width = '0%';
+  document.body.classList.remove('no-scroll');
+  overlayContent.innerHTML = 0;
 }
 
 export {
@@ -79,8 +82,9 @@ function onEscClick(evt) {
 
   if (evt.code === 'Escape') {
     evt.preventDefault();
-    document.body.classList.remove('no-scroll');
     overlayForVideo.style.width = '0%';
+    document.body.classList.remove('no-scroll');    
+    overlayContent.innerHTML = 0;
   }
 }
 
@@ -95,5 +99,6 @@ function onBackdropClick(evt) {
     evt.preventDefault();
     document.body.classList.remove('no-scroll');
     overlayForVideo.style.width = '0%';
+    overlayContent.innerHTML = 0;
   }
 }

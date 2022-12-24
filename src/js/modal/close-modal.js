@@ -30,4 +30,5 @@ function onBackdropClick(evt) {
     console.log('Backdrop');
     evt.preventDefault();
     refs.teamModal.classList.toggle('is-hidden');
+  }
 }

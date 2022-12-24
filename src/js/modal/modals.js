@@ -73,9 +73,9 @@ async function closeModal(e) {
 
 export { openModal };
 
-window.addEventListener('keydown', onEscClick);
+window.addEventListener('keydown', onEscClickEsc);
 
-function onEscClick(evt) {
+function onEscClickEsc(evt) {
   if (evt.code === 'Escape') {
     console.log('Escape');
     document.body.classList.remove('no-scroll');

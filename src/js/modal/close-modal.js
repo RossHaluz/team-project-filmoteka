@@ -11,7 +11,7 @@ function toggleModal(evt) {
   document.body.classList.add('no-scroll');
   refs.teamModal.classList.toggle('is-hidden');
 }
-// window.addEventListener('keydown', onEscClick);
+window.addEventListener('keydown', onEscClick);
 
 function onEscClick(evt) {
   if (evt.code === 'Escape') {

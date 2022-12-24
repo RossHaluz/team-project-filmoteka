@@ -1,27 +1,27 @@
 import { refs } from '../fetch-service/refs';
 import FetchFilmsApi from '../fetch-service/fechFilmsApi';
 
-const api = new FetchFilmsApi();
+const api = new FetchFilmsApi(); //ініціалізація класу запитів
 
 let currentId = 0; // поточний id фільму, який відкритий в модалці
 let videosArr = []; // масив для всіх знайдених відео
-let embedTrailer = []; // масив для до трейлерів на ютубі
+let embedTrailer = []; // масив для трейлерів на ютубі, які додаються у відео-галерею
 
-const closeBtn = document.querySelector('.closebtn');
-const overlayForVideo = document.querySelector('#overlay-video')
-const overlayContent = document.querySelector('#overlay-content');
+const trailerBtn = document.querySelector('.modal__trailer-btn'); //кнопка запуску трейлера
+const closeBtn = document.querySelector('.closebtn'); //кнопка закриття відео-галереї
+const overlayForVideo = document.querySelector('#overlay-video'); //модалка для відео-галереї
+const overlayContent = document.querySelector('#overlay-content'); //наповнення відео-галереї
 
-
-refs.gallery.addEventListener('click', getTrailerId);
-refs.backdrop.addEventListener('click', openTrailersGallary);
-closeBtn.addEventListener('click', closeTrailersGallary);
+refs.gallery.addEventListener('click', getTrailerId); //слухач принатискання на картку фільма
+refs.backdrop.addEventListener('click', openTrailersGallary); //слухач відкриття модалного вікна з карткою фільму
+closeBtn.addEventListener('click', closeTrailersGallary); //слухач закриття відео-галереї
 
 // отримання id фільму
 function getTrailerId(e) {
   currentId = Number(e.target.dataset.id);
 }
 
-// відкриття модалки з трейлерами при натисканні на кнопку "Show Trailer" // чекаю поки додадуть
+// відкриття модалки з трейлерами при натисканні на кнопку ▶ "Show Trailer" 
 function openTrailersGallary(e) {
   if (e.target.innerText === '▶') {
     showTrailersGallary();
@@ -30,18 +30,23 @@ function openTrailersGallary(e) {
 
 // формування галереї трейлерів з ютуб
 function showTrailersGallary() {
-    embedTrailer = [];
+  embedTrailer = [];
   // пошук трейлерів по id фільму
   api.fetchTrailer(currentId).then(response => {
     videosArr = response.data.results;
 
-    // перебираємо всі запропоновіні відео, дістаємо ТІЛЬКИ трейлери
-    if (videosArr.length) {
+    // якщо після запиту відео НЕ прийшли, то кнопка ▶ "Show Trailer" стає display:'none'
+    if (!videosArr.length) {
+      trailerBtn.style.display = 'none';
+      alert('No found trailers'); // це краще зробити це через бібліотеку Notify
+    } else {
+      // якщо після запиту Є масив з відео, то відкривається модалка відео-галереї
       console.log(videosArr);
       overlayForVideo.style.width = '100%';
+      // перебираємо всі запропоновіні відео, дістаємо ТІЛЬКИ трейлери, додаємо їх в масив трейлерів embedTrailer
       videosArr.forEach(video => {
         let { key, site, name, type } = video;
-        if (site === 'YouTube' &&  type === "Trailer") {
+        if (site === 'YouTube' && type === 'Trailer') {
           embedTrailer.push(`
                     <iframe src="https://www.youtube.com/embed/${key}" 
                     title="${name}" frameborder="0" allow="accelerometer; autoplay; 
@@ -49,16 +54,21 @@ function showTrailersGallary() {
                     `);
         }
       });
+      // джойнимо і виводимо трейлери в галерею
       overlayContent.innerHTML = embedTrailer.join('');
-    } else {
-      overlayContent.innerHTML = `<h1>No Results Found</h1>`;
     }
   });
 }
 
-// відкриття модалки з трейлерами при натисканні на кнопку "Х"
+// закриття модалки з трейлерами при натисканні на кнопку "Х"
 function closeTrailersGallary() {
-    overlayForVideo.style.width = '0%';
+  overlayForVideo.style.width = '0%';
 }
 
-export { onSearchTrailer, getTrailerId, openTrailersGallary, showTrailersGallary, closeTrailersGallary };
+export {
+  onSearchTrailer,
+  getTrailerId,
+  openTrailersGallary,
+  showTrailersGallary,
+  closeTrailersGallary,
+};

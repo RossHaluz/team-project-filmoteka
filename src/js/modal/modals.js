@@ -1,6 +1,4 @@
-
 // const modal = document.querySelector('.modal');
-
 
 // modal.addEventListener('click', closeModal);
 
@@ -17,24 +15,20 @@
 //     }
 // }
 
-
-
 // FT-20 Реалізувати закриття модалки за натисканням на клавішу ESC і за кліком поза межами модалки, не забути зняти слухачів
 
-
 // закинуть в function openModal
-window.addEventListener('keydown', onEscClick)
+window.addEventListener('keydown', onEscClick);
 
 // ________________
 
 function onEscClick(evt) {
-    if (evt.code === 'Escape') {
-        closeModal();
-        modal.classList.remove('visiable');
-        modal.removeEventListener('click', closeModal);
-        window.removeEventListener('keydown', onEscClick);
-
-    }
+  if (evt.code === 'Escape') {
+    closeModal();
+    modal.classList.remove('visiable');
+    modal.removeEventListener('click', closeModal);
+    window.removeEventListener('keydown', onEscClick);
+  }
 }
 
 import FetchFilmsApi from '../fetch-service/fechFilmsApi';
@@ -44,7 +38,7 @@ import { createMarkup } from '../fetch-service/renderFuncApi';
 const fetchFilmsApi = new FetchFilmsApi();
 
 refs.gallery.addEventListener('click', openModal); //galleryCard.dataset.id
- refs.modalCloseBtn.addEventListener('click', closeModal);
+refs.modalCloseBtn.addEventListener('click', closeModal);
 
 async function openModal(e) {
   if (!e.target.classList.contains('card-image')) {
@@ -72,14 +66,14 @@ async function closeModal(e) {
   ) {
     document.body.classList.remove('no-scroll');
     refs.backdrop.classList.add('is-hidden');
-    }
+  }
   refs.backdrop.removeEventListener('click', closeModal);
   window.removeEventListener('keydown', closeModal);
 }
 
 export { openModal };
 
-window.addEventListener('keydown', onEscClick)
+window.addEventListener('keydown', onEscClick);
 
 function onEscClick(evt) {
   if (evt.code === 'Escape') {

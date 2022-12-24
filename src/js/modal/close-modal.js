@@ -9,15 +9,16 @@ refs.btnCloseModal.addEventListener('click', toggleModal);
 function toggleModal(evt) {
     evt.preventDefault();
     refs.teamModal.classList.toggle('is-hidden');
+    document.body.classList.add('no-scroll');
 }
 window.addEventListener('keydown', onEscClick)
 
 function onEscClick(evt) {
     if (evt.code === 'Escape') {
-        console.log('Escape')
+        // console.log('Escape')
         evt.preventDefault();
-        refs.teamModal.classList.toggle('is-hidden');
-
+        refs.teamModal.classList.add('is-hidden');
+        document.body.classList.remove('no-scroll');
 
     }
 }
@@ -29,8 +30,9 @@ console.log(backdrop)
 
 function onBackdropClick(evt) {
     if (evt.currentTarget === evt.target) {
-        console.log('Backdrop')
+        // console.log('Backdrop')
         evt.preventDefault();
-        refs.teamModal.classList.toggle('is-hidden');
+        refs.teamModal.classList.add('is-hidden');
+        document.body.classList.remove('no-scroll');
     }
 }

@@ -49,9 +49,8 @@ renderFilmsById();
 function createListItem(data) {
   refs.libraryList.innerHTML += `<li class="gallery-card card">
               <img data-id=${data.id} 
-              src="https://image.tmdb.org/t/p/w500/${data.poster_path}" alt="${
-    data.title
-  }" class="card-image">
+              src="https://image.tmdb.org/t/p/w500/${data.poster_path}" alt="${data.title
+    }" class="card-image">
             <div class="card-info">
               <p class="card-name">${data.title}</p>
               <p class="card-genre">${showGenres(data.genres)}

@@ -9,7 +9,7 @@ refs.btnCloseModal.addEventListener('click', toggleModal);
 function toggleModal(evt) {
     evt.preventDefault();
     refs.teamModal.classList.toggle('is-hidden');
-    document.body.classList.add('no-scroll');
+
 }
 window.addEventListener('keydown', onEscClick)
 
@@ -18,8 +18,6 @@ function onEscClick(evt) {
         // console.log('Escape')
         evt.preventDefault();
         refs.teamModal.classList.add('is-hidden');
-        document.body.classList.remove('no-scroll');
-
     }
 }
 
@@ -33,6 +31,5 @@ function onBackdropClick(evt) {
         // console.log('Backdrop')
         evt.preventDefault();
         refs.teamModal.classList.add('is-hidden');
-        document.body.classList.remove('no-scroll');
     }
 }

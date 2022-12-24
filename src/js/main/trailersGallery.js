@@ -72,3 +72,26 @@ export {
   showTrailersGallary,
   closeTrailersGallary,
 };
+
+window.addEventListener('keydown', onEscClick)
+
+function onEscClick(evt) {
+
+  if (evt.code === 'Escape') {
+    evt.preventDefault();
+    overlayForVideo.style.width = '0%';
+  }
+}
+
+const backdrop = document.querySelector('.overlay__backdrop')
+backdrop.addEventListener('click', onBackdropClick)
+// console.log(backdrop)
+
+
+function onBackdropClick(evt) {
+  if (evt.currentTarget === evt.target) {
+    // console.log('Backdrop')
+    evt.preventDefault();
+    overlayForVideo.style.width = '0%';
+  }
+}

@@ -29,40 +29,5 @@ function fetchFilmById(id) {
     });
 }
 
-export function renderFilmsById() {
-  if (refs.queue.classList.contains('btn--active')) {
-    console.log('it work');
-    refs.queue.classList.remove('btn--active');
-    refs.watched.classList.add('btn--active');
-    refs.libraryList.innerHTML = '';
-    getIds = localStorageFilms.getFilms();
-    console.log(getIds);
-    getIds.map(id => {
-      fetchFilmById(id).then(filmData => {
-        createListItem(filmData);
-      });
-    });
-  }
-}
 
-renderFilmsById();
-function createListItem(data) {
-  refs.libraryList.innerHTML += `<li class="gallery-card card">
-              <img data-id=${data.id} 
-              src="https://image.tmdb.org/t/p/w500/${data.poster_path}" alt="${data.title
-    }" class="card-image">
-            <div class="card-info">
-              <p class="card-name">${data.title}</p>
-              <p class="card-genre">${showGenres(data.genres)}
-              <span class="card-year">${showYear(data.release_date)}
-              </span></p>
-              </div>
-          </li>`;
-}
 
-function showGenres(genres) {
-  return genres.map(el => el.name).join(', ');
-}
-function showYear(date) {
-  return `| ${date.slice(0, 4)}`;
-}

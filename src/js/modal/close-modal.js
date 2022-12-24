@@ -17,6 +17,7 @@ function onEscClick(evt) {
   if (evt.code === 'Escape') {
     console.log('Escape');
     evt.preventDefault();
+    document.body.classList.remove('no-scroll');
     refs.teamModal.classList.add('is-hidden');
   }
 }
@@ -29,6 +30,7 @@ function onBackdropClick(evt) {
   if (evt.currentTarget === evt.target) {
     console.log('Backdrop');
     evt.preventDefault();
+    document.body.classList.remove('no-scroll');
     refs.teamModal.classList.add('is-hidden');
   }
 }

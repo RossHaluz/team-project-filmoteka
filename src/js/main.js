@@ -10,6 +10,8 @@ onButtonScrolUp();
 onCreat();
 // addListenerToCard();
 import { onSearchTrailer, getTrailerId, openTrailersGallary, showTrailersGallary, closeTrailersGallary } from "./main/trailersGallery";
+import { onClickBtnNext } from './paginatin/pagination';
+
 
 
 

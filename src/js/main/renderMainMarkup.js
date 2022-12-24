@@ -15,6 +15,8 @@ async function onCreat() {
     .catch(error => console.log(error));
 }
 
+
+
 async function creatCards(data) {
   //функция для создания разметки карточек
   allGenres = await topicalAllGenres(); // строка для скачивания все актуальные жанры перед созданием разметки

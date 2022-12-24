@@ -79,6 +79,7 @@ function onEscClick(evt) {
 
   if (evt.code === 'Escape') {
     evt.preventDefault();
+    document.body.classList.remove('no-scroll');
     overlayForVideo.style.width = '0%';
   }
 }
@@ -92,6 +93,7 @@ function onBackdropClick(evt) {
   if (evt.currentTarget === evt.target) {
     // console.log('Backdrop')
     evt.preventDefault();
+    document.body.classList.remove('no-scroll');
     overlayForVideo.style.width = '0%';
   }
 }

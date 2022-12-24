@@ -15,6 +15,9 @@ const refs = {
   //   btnCloseModal: document.querySelector('[data-close-modal]'),
   //   teamModal: document.querySelector('[data-modal]'),
   modalContent: document.querySelector('.modal__content'),
+  paginationListItemPrev: document.querySelector('.pagination-list__item-prev'),
+  paginationListItemNext: document.querySelector('.pagination-list__item-next'),
+  paginationListItemPage: document.querySelector('.pagination-list__item-page'),
 };
 
 export { refs };

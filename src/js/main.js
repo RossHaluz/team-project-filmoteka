@@ -5,8 +5,13 @@ import { onButtonScrolUp } from './main/buttonScrolUp';
 import { onClickChangeColor } from './main/changeColor';
 import { createMarkup } from './fetch-service/renderFuncApi';
 import { openModal } from './modal/modals';
-
+import { openTeamModal } from './modal/close-modal';
 onButtonScrolUp();
 onCreat();
-
 // addListenerToCard();
+import { onSearchTrailer, getTrailerId, openTrailersGallary, showTrailersGallary, closeTrailersGallary } from "./main/trailersGallery";
+
+
+
+
+

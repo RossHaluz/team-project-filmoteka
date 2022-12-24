@@ -14,6 +14,7 @@ const refs = {
   //   linkOpenModal: document.querySelector('[data-open-modal]'),
   //   btnCloseModal: document.querySelector('[data-close-modal]'),
   //   teamModal: document.querySelector('[data-modal]'),
+  modalContent: document.querySelector('.modal__content'),
 };
 
 export { refs };

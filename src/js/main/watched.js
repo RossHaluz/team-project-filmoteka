@@ -1,7 +1,14 @@
+import FetchFilmsApi from '../fetch-service/fechFilmsApi';
 import { LocalStorageServiceFilms } from '../fetch-service/localStorageService';
 import { refs } from '../fetch-service/refs';
 import { API_KEY, ID_URL } from '../fetch-service/api-vars';
-
+import {
+  createMarkup,
+  toChangeGenres,
+  toChangeNum,
+} from '../fetch-service/renderFuncApi';
+const fetchFilmsApi = new FetchFilmsApi();
+// refs.libraryList.addEventListener('click', createMarkup);
 refs.watched.addEventListener('click', onClickWatched);
 // refs.queue.addEventListener('click', onClickQueue);
 const localStorageFilms = new LocalStorageServiceFilms();

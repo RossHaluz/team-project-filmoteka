@@ -1,13 +1,11 @@
-import { genresSerch } from '../main/renderMainMarkup';
-import { onCreat, creatCards } from '../main/renderMainMarkup';
 import { refs } from './refs';
 import { LocalStorageServiceFilms } from '../fetch-service/localStorageService';
-//  ADDED BY ANDRII
+
 const localStorageServiceFilms = new LocalStorageServiceFilms();
 const movieStore = localStorageServiceFilms.getFilms();
 let activeText = '';
-refs.backdrop.addEventListener('click', watchedBtnClick);
-function watchedBtnClick(e) {
+refs.backdrop.addEventListener('click', addWatchedBtnClick);
+function addWatchedBtnClick(e) {
   if (
     e.target.innerText === 'ADD TO WATCHED' ||
     e.target.innerText === 'REMOVE FROM WATCHED'
@@ -24,7 +22,7 @@ function handlerSetLocalStorage(id) {
     btn.textContent = 'ADD TO WATCHED';
   }
 }
-// ADDED BY ANDRII SHKRAB
+
 function createMarkup({
   id,
   poster_path,
@@ -41,27 +39,31 @@ function createMarkup({
   } else {
     activeText = 'REMOVE FROM WATCHED';
   }
-  const markup = `
+  const markup = `<div class ="modal__img-box">
       <img
         class="modal__image"
         src="https://image.tmdb.org/t/p/w500/${poster_path}"
         alt="${title}"
         data-id=${id}
       />
+      <button type="button" class="modal__trailer-btn">▶</button>
+      </div>
       <div class="modal__text-content">
         <h2 class="modal__title">${title}</h2>
         <ul class="modal__info">
           <li class="modal__info-key">
-            <p><span class="modal__vote-design">Vote</span> / <span class="modal__votes-design">Votes</span></p>
+            <p>Vote / Votes</span></p>
             <p>Popularity</p>
             <p>Original Title</p>
             <p>Genre</p>
           </li>
           <li class="modal__info-value">
-            <p>${vote_average} / ${vote_count}</p>
-            <p>${popularity}</p>
+            <p><span class="modal__vote-design">${toChangeNum(
+              vote_average
+            )}</span> / <span class="modal__votes-design">${vote_count}</span></p> 
+            <p>${toChangeNum(popularity)}</p>
             <p>${original_title}</p>
-            <p>${createGenres(genres)}</p>
+            <p>${toChangeGenres(genres)}</p>
           </li>
         </ul>
         <h3 class="modal__about">ABOUT</h3>
@@ -73,16 +75,15 @@ function createMarkup({
       </div>
   `;
 
-  refs.modalWrap.insertAdjacentHTML('beforeend', markup);
+  refs.modalContent.insertAdjacentHTML('beforeend', markup);
 }
 
-function createGenres(data) {
+function toChangeGenres(data) {
   return data.map(el => el.name).join(', ');
 }
-// <button type="button" class="modal__close">
-// <svg class="icon-close" width="30" height="30">
-// <use href="./img/svg/sprite.svg#icon-close">
-// </use>
-// </svg>
-// </button>
+
+function toChangeNum(data) {
+  return data % 1 === 0 ? data.toFixed() : data.toFixed(1);
+}
+
 export { createMarkup };

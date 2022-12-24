@@ -32,20 +32,11 @@ export class LocalStorageServiceFilms {
 
     localStorage.setItem(this.keyNameWached, JSON.stringify(films));
 
-    return {
-      pushFilm,
-      films,
-    };
-  }
-  getQueueFilms() {
-    const filmsLocalStorage = localStorage.getItem(this.keyNameQueue);
-
-    if (filmsLocalStorage !== null) {
-      return JSON.parse(filmsLocalStorage);
+        return {
+            pushFilm,
+            films,
+        }
     }
-
-    return [];
-  }
 
   setQueueMovie(id) {
     let films = this.getFilms();

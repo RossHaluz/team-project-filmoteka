@@ -1,12 +1,8 @@
-// export function getFilmsById() {
-//   console.log('click');
-//   const getFilms = localStorageFilms.getFilms();
-//   getFilms.map(film => {
-//     fetchApi.getIdFilm = film;
-//     const options = { mediaType: 'movie', id: film };
-//     fetchApi.getCurrentFilm(options).then(data => creatLibraryMarkup(data));
-//   });
-// }
+import FetchFilmsApi from '../fetch-service/fechFilmsApi';
+import { LocalStorageServiceFilms } from '../fetch-service/localStorageService';
+import { refs } from "../fetch-service/refs";
+
+
 
 const fetchApi = new FetchFilmsApi();
 const localStorageFilms = new LocalStorageServiceFilms()

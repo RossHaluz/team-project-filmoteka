@@ -34,7 +34,7 @@ function onEscClick(evt) {
 import FetchFilmsApi from '../fetch-service/fechFilmsApi';
 import { refs } from '../fetch-service/refs';
 import { createMarkup } from '../fetch-service/renderFuncApi';
-
+import { checkWatchedLs } from '../fetch-service/renderFuncApi';
 
 const fetchFilmsApi = new FetchFilmsApi();
 
@@ -50,7 +50,7 @@ async function openModal(e) {
   document.body.classList.add('no-scroll');
   refs.modalContent.innerHTML = '';
   const filmId = e.target.dataset.id;
-
+  checkWatchedLs(filmId);
   fetchFilmsApi
     .getCurrentFilm({ id: filmId })
     .then(data => createMarkup(data.data))

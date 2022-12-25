@@ -37,7 +37,8 @@ function showTrailersGallary() {
 
     // якщо після запиту відео НЕ прийшли, то кнопка ▶ "Show Trailer" стає display:'none'
     if (!videosArr.length) {
-      trailerBtn.style.display = 'none';
+      // trailerBtn.style.display = "none";  //видає помилку в консолі
+      // trailerBtn.style.opacity = 0;  //видає помилку в консолі
       alert('No found trailers'); // це краще зробити це через бібліотеку Notify
     } else {
       // якщо після запиту Є масив з відео, то відкривається модалка відео-галереї

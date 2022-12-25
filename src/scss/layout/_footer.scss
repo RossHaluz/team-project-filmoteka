@@ -80,6 +80,12 @@
   .team__icon {
     fill: var(--black-color);
     transition: fill .3s linear;
+    width: 20px;
+    height: 20px;
+    @include mq(tab) {
+      width: 18px;
+      height: 18px;
+    } 
   }
 
   .team__link {
@@ -118,8 +124,8 @@
   position: absolute;
   top: 5px;
   right: 10px;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,11 +136,11 @@
   transition: fill .3s linear;
   
   @include mq(tab) {
-    top: 45px;
+    top: 35px;
     right: 30px;
   }
   @include mq(desk) {
-    top: 45px;
+    top: 35px;
     right: 40px;
   }
 

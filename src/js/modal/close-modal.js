@@ -10,6 +10,9 @@ function toggleModal(evt) {
   evt.preventDefault();
   document.body.classList.add('no-scroll');
   refs.teamModal.classList.toggle('is-hidden');
+  if ('is - hidden') {
+    document.body.classList.remove('no-scroll');
+  }
 }
 window.addEventListener('keydown', onEscClick);
 

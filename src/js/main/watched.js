@@ -2,16 +2,17 @@ import FetchFilmsApi from '../fetch-service/fechFilmsApi';
 import { LocalStorageServiceFilms } from '../fetch-service/localStorageService';
 import { refs } from '../fetch-service/refs';
 import { API_KEY, ID_URL } from '../fetch-service/api-vars';
+import { renderFilmsByIdQue } from './Queue';
 
 const localStorageFilms = new LocalStorageServiceFilms();
 refs.watched.addEventListener('click', onClickWatched);
-
+refs.watched.addEventListener('click', renderFilmsById);
 function onClickWatched() {
   refs.queue.classList.remove('btn--active');
   refs.watched.classList.add('btn--active');
 }
 
-function fetchFilmById(id) {
+export function fetchFilmById(id) {
   return fetch(`${ID_URL}${id}?api_key=${API_KEY}`)
     .then(response => {
       return response.json();

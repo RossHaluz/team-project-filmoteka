@@ -25,12 +25,40 @@ function handlerSetLocalStorage(id) {
 }
 export function checkWatchedLs(id) {
   if (movieStore.indexOf(id) === -1) {
-    return (activeText = 'ADD TO WATCHED');
+    activeText = 'ADD TO WATCHED';
   } else {
-    return (activeText = 'REMOVE FROM WATCHED');
+    activeText = 'REMOVE FROM WATCHED';
   }
 }
+// ================================for QUEUE=============================
+const movieStoreQue = localStorageServiceFilms.getQueueFilms();
+let activeTextQue = '';
+refs.backdrop.addEventListener('click', addWatchedBtnClickQue);
 
+function addWatchedBtnClickQue(e) {
+  if (
+    e.target.innerText === 'ADD TO QUEUE' ||
+    e.target.innerText === 'REMOVE FROM QUEUE'
+  ) {
+    handlerSetLocalStorageQue(e.target.dataset.id);
+  }
+}
+function handlerSetLocalStorageQue(id) {
+  const btnQue = document.querySelector('.modal__queue-btn');
+  const { pushFilmQue, filmsQue } = localStorageServiceFilms.setQueueMovie(id);
+  if (pushFilmQue) {
+    btnQue.textContent = 'REMOVE FROM QUEUE';
+  } else {
+    btnQue.textContent = 'ADD TO QUEUE';
+  }
+}
+export function checkQueLs(id) {
+  if (movieStoreQue.indexOf(id) === -1) {
+    activeTextQue = 'ADD TO QUEUE';
+  } else {
+    activeTextQue = 'REMOVE FROM QUEUE';
+  }
+}
 function createMarkup({
   id,
   poster_path,
@@ -78,7 +106,7 @@ function createMarkup({
         <p class="modal__about-text">${overview}</p>
         <div class="modal__btns">
           <button type="button" class="modal__watched-btn" data-id = ${id}>${activeText}</button>
-          <button type="button" class="modal__queue-btn">Add to Queue</button>
+          <button type="button" class="modal__queue-btn"data-id = ${id}>${activeTextQue}</button>
         </div>
       </div>
   `;
@@ -95,6 +123,6 @@ function toChangeNum(data) {
 }
 
 export { createMarkup };
-StaticRange
+StaticRange;
 
 /* AddQueue */

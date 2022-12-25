@@ -5,6 +5,7 @@ const localStorageServiceFilms = new LocalStorageServiceFilms();
 const movieStore = localStorageServiceFilms.getFilms();
 let activeText = '';
 refs.backdrop.addEventListener('click', addWatchedBtnClick);
+
 function addWatchedBtnClick(e) {
   if (
     e.target.innerText === 'ADD TO WATCHED' ||
@@ -87,3 +88,6 @@ function toChangeNum(data) {
 }
 
 export { createMarkup };
+StaticRange
+
+/* AddQueue */

@@ -26,7 +26,7 @@ function renderFilmsById() {
     refs.queue.classList.remove('btn--active');
     refs.watched.classList.add('btn--active');
     refs.libraryList.innerHTML = '';
-   const  getIds = localStorageFilms.getFilms();
+    const getIds = localStorageFilms.getFilms();
     console.log(getIds);
     getIds.map(id => {
       fetchFilmById(id).then(filmData => {

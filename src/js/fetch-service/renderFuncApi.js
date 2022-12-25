@@ -15,11 +15,18 @@ function addWatchedBtnClick(e) {
 }
 function handlerSetLocalStorage(id) {
   const btn = document.querySelector('.modal__watched-btn');
-  const { pushFilm, movies } = localStorageServiceFilms.setFilms(id);
+  const { pushFilm, films } = localStorageServiceFilms.setFilms(id);
   if (pushFilm) {
     btn.textContent = 'REMOVE FROM WATCHED';
   } else {
     btn.textContent = 'ADD TO WATCHED';
+  }
+}
+export function checkWatchedLs(id) {
+  if (movieStore.indexOf(id) === -1) {
+    return (activeText = 'ADD TO WATCHED');
+  } else {
+    return (activeText = 'REMOVE FROM WATCHED');
   }
 }
 
@@ -34,11 +41,11 @@ function createMarkup({
   popularity,
   genres,
 }) {
-  if (movieStore.indexOf(id) === -1) {
-    activeText = 'ADD TO WATCHED';
-  } else {
-    activeText = 'REMOVE FROM WATCHED';
-  }
+  // if (movieStore.indexOf(id) === -1) {
+  //   activeText = 'ADD TO WATCHED';
+  // } else {
+  //   activeText = 'REMOVE FROM WATCHED';
+  // }
   const markup = `<div class ="modal__img-box">
       <img
         class="modal__image"

@@ -7,6 +7,8 @@ import {
   onClickBtnLibraryWatched,
 } from './main/renderLibraryMarkup';
 import { renderFilmsById } from './main/watched';
+import { renderFilmsByIdQue } from './main/Queue';
 import { openTeamModal } from './modal/close-modal';
 import { createMarkup } from './fetch-service/renderFuncApi';
+
 // import { openModal } from './modal/modals';
